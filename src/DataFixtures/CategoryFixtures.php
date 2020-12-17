@@ -8,6 +8,9 @@ use Doctrine\Persistence\ObjectManager;
 
 class CategoryFixtures extends Fixture
 {
+    private const KEY_OBJECT = 'object';
+    private const KEY_NAME   = 'name';
+
     public const CATEGORY_GRABS    = 'grabs';
     public const CATEGORY_FLIPS    = 'flips';
     public const CATEGORY_INVERTED = 'inverted';
@@ -17,43 +20,23 @@ class CategoryFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        // Grabs
-        $grabs = new Category();
-        $grabs->setName('gRaBS');
-        $manager->persist($grabs);
+        $data =  [
+            [self::KEY_OBJECT => self::CATEGORY_GRABS, self::KEY_NAME => 'gRaBS'],
+            [self::KEY_OBJECT => self::CATEGORY_FLIPS, self::KEY_NAME => 'fLIpS'],
+            [self::KEY_OBJECT => self::CATEGORY_INVERTED, self::KEY_NAME => 'iNVerteD hAnD plANtS'],
+            [self::KEY_OBJECT => self::CATEGORY_SLIDES, self::KEY_NAME => 'sLiDES'],
+            [self::KEY_OBJECT => self::CATEGORY_STALLS, self::KEY_NAME => 'sTallS'],
+            [self::KEY_OBJECT => self::CATEGORY_TWEAKS, self::KEY_NAME => 'tWeaKS'],
+        ];
 
-        // Flips
-        $flips = new Category();
-        $flips->setName('fLIpS');
-        $manager->persist($flips);
-
-        // Inverted hand plants
-        $inverted = new Category();
-        $inverted->setName('iNVerteD hAnD plANtS');
-        $manager->persist($inverted);
-
-        // Slides
-        $slides = new Category();
-        $slides->setName('sLiDES');
-        $manager->persist($slides);
-
-        // Stalls
-        $stalls = new Category();
-        $stalls->setName('sTallS');
-        $manager->persist($stalls);
-
-        // Tweaks
-        $tweaks = new Category();
-        $tweaks->setName('tWeaKS');
-        $manager->persist($tweaks);
+        foreach ($data as $item) {
+            $name = $item[self::KEY_OBJECT];
+            $$name = new Category();
+            $$name->setName($item[self::KEY_NAME]);
+            $manager->persist($$name);
+            $this->addReference($item[self::KEY_OBJECT], $$name);
+        }
 
         $manager->flush();
-
-        $this->addReference(self::CATEGORY_GRABS, $grabs);
-        $this->addReference(self::CATEGORY_FLIPS, $flips);
-        $this->addReference(self::CATEGORY_INVERTED, $inverted);
-        $this->addReference(self::CATEGORY_SLIDES, $slides);
-        $this->addReference(self::CATEGORY_STALLS, $stalls);
-        $this->addReference(self::CATEGORY_TWEAKS, $tweaks);
     }
 }
