@@ -75,6 +75,8 @@ class Trick
         $this->comments = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
+
+        $this->setCreationTime(new \DateTime('NOW'));
     }
 
     public function getId(): ?int
