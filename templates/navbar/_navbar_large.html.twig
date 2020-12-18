@@ -1,0 +1,35 @@
+<nav class="navbar position-sticky top-0 navbar-expand navbar-dark bg-dark d-none d-sm-block">
+    <div class="container-fluid my-2">
+        {# brand #}
+        <a class="navbar-brand mx-2" href="{{ path('home') }}">
+            <img src="{{ asset('build/images/title.svg') }}" alt="SnowTricks brand" width="140">
+        </a>
+        {# menu #}
+        <ul class="navbar-nav mx-2">
+            <li class="nav-item">
+                <a class="nav-link active fw-light" aria-current="page" href="{{ path('home') }}">hOme</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-light" href="#">TrIcKS</a>
+            </li>
+            {% if app.user is null %}
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="#">sIGN-iN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="#">sIgn-uP</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="#">
+                        <i class="bi bi-person-bounding-box bg-dark"></i>
+                        aCCouNT
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="#">loGouT</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
