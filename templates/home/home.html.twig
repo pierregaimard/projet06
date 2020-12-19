@@ -1,4 +1,57 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
 {% block body %}
+    {# Heading section #}
+    <section
+        id="app-heading-section"
+        class="container-fluid vh-100 overflow-hidden d-flex flex-column justify-content-between"
+    >
+        <div></div>
+        <div id="app-home-title" class="m-sm-3 m-md-4 m-xl-5">
+            <img src="{{ asset('build/images/snowtricks-heading-title.svg') }}" alt="SnowTricks Title">
+        </div>
+        <div id="app-home-button" class="m-sm-3 m-md-4 m-xl-5">
+            <a href="#app-tricks-section">
+                <img
+                    id="app-tricks-button"
+                    class="shadow"
+                    src="{{ asset('build/images/homepage-tricks-button.svg') }}"
+                    alt="SnowTricks button"
+                >
+            </a>
+        </div>
+    </section>
+    {# Tricks section #}
+    <section id="app-tricks-section" class="vh-100 bg-dark">
+        <div id="app-tricks-container" class="container">
+            <div class="d-flex flex-row justify-content-between mb-5">
+                <div>
+                    <h2 class="text-white fw-lighter display-2">List of Tri<span class="snow">cK</span>S</h2>
+                    <form class="snow-form">
+                        <input type="search" class="form-control form-control-lg fw-light col-6" placeholder="seARcH">
+                    </form>
+                </div>
+                <div>
+                    <a href="#">
+                        <img
+                            id="app-add-trick"
+                            src="{{ asset('build/images/app-icon-plus.svg') }}"
+                            alt="add a trick" width="60"
+                        >
+                    </a>
+                </div>
+            </div>
+            {% include 'home/_tricks.html.twig' %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
 {% endblock %}
