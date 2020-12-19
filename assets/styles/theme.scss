@@ -1,0 +1,18 @@
+// Bootstrap variables
+$dark: #000000;
+$input-placeholder-color: rgba(255,255,255, 0.6);
+$input-focus-border-color: #00FFFF;
+$input-focus-box-shadow: rgba(255,255,255, 0.2);
+$enable-shadows: true;
+$card-height: 100%;
+
+// Global css
+.snow {
+  color:  #00FFFF;
+}
+
+.snow-form input, .snow-form input:focus {
+  background-color: unset;
+  color: white;
+  outline: 0;
+}
