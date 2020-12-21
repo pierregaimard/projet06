@@ -1,0 +1,113 @@
+// Heading section
+
+// Background
+#app-heading-section {
+  background-image: url("../images/mountain.svg"), url("../images/snowtricks-home-heading.jpg");
+  background-position: bottom, top;
+  background-size: 100%, cover;
+  background-repeat: no-repeat;
+}
+
+// Title & button
+@media all and (min-width: 1200px) {
+  #app-home-title img { width: 600px; }
+  #app-home-button img { width: 100px; }
+}
+
+@media all and (min-width: 992px) and (max-width: 1200px) {
+  #app-home-title img { width: 500px; }
+  #app-home-button img { width: 100px; }
+}
+
+@media all and (min-width: 768px) and (max-width: 992px) {
+  #app-home-title img { width: 450px; }
+  #app-home-button img { width: 100px; }
+}
+
+@media all and (min-width: 576px) and (max-width: 768px) {
+  #app-home-title img { width: 400px; }
+  #app-home-button img { width: 80px; }
+}
+
+@media all and (max-width: 568px) {
+  #app-home-title img { width: 250px; }
+  #app-home-button img { width: 60px; }
+  #app-heading-section { padding-bottom: 80px; }
+}
+
+@media all and (min-width: 576px) {
+  #app-heading-section { padding-top: 80px; }
+}
+
+#app-home-title { transform: rotate(-3deg); }
+
+// Heading Button
+#app-tricks-button {
+  transform: rotate(-3deg);
+  transition: transform 0.2s;
+}
+
+#app-tricks-button:hover {
+  transform: scale(1.2) translateY(-30px);
+  transition: transform 0.2s ease-in-out;
+}
+
+// Tricks section
+
+#app-tricks-section { display: none; }
+
+@media all and (min-width: 576px) {
+  .sticky-top { top: 60px; }
+}
+
+@media all and (max-width: 575px) {
+  #app-add-trick { width: 50px; }
+}
+
+// Add trick button
+#app-add-trick { transition: transform 0.2s; }
+
+#app-add-trick:hover {
+  transform: scale(1.2) rotate(180deg);
+  transition: transform 0.2s;
+}
+
+// Tricks list
+#app-tricks,
+#app-tricks li { padding: 15px; }
+
+// Trick card
+.card { transition: transform 0.2s ease-in-out; }
+
+.card:hover {
+  transform: scale(1.05) translateY(-15px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+// Icon button
+#up-icon {
+  transform: scale(1);
+  transition: transform ease-in-out 0.2s;
+}
+
+#up-icon:hover {
+  transform: scale(1.4) rotate(360deg);
+  transition: transform ease-in-out 0.2s;
+}
+
+// load more button
+#load-more-tricks {
+  transform: scale(1);
+  transition: transform ease-in-out 0.2s;
+}
+
+#load-more-tricks:hover {
+  transform: scale(1.4) translateY(-10px);
+  transition: transform ease-in-out 0.2s;
+}
