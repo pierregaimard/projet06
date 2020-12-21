@@ -27,26 +27,33 @@
         </div>
     </section>
     {# Tricks section #}
-    <section id="app-tricks-section" class="vh-100 bg-dark">
-        <div id="app-tricks-container" class="container">
-            <div class="d-flex flex-row justify-content-between mb-5">
-                <div>
-                    <h2 class="text-white fw-lighter display-2">List of Tri<span class="snow">cK</span>S</h2>
-                    <form class="snow-form">
-                        <input type="search" class="form-control form-control-lg fw-light col-6" placeholder="seARcH">
-                    </form>
+    <section id="app-tricks-section" class="bg-dark pb-5 pt-2 pt-sm-5">
+        <div id="app-tricks-container" class="container pt-sm-5">
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-3 mb-2 sticky-top bg-dark shadow-lg">
+                <div class="mb-2 mb-sm-0">
+                    <h2 class="text-white fw-lighter display-4">List of Tri<span class="snow">cK</span>S</h2>
                 </div>
-                <div>
-                    <a href="#">
-                        <img
-                            id="app-add-trick"
-                            src="{{ asset('build/images/app-icon-plus.svg') }}"
-                            alt="add a trick" width="60"
-                        >
-                    </a>
+                <div class="d-flex flex-row justify-content-between justify-content-sm-end align-items-center">
+                    <div class="me-4">
+                        <form class="snow-form">
+                            <input type="search" class="form-control form-control-lg fw-light col-6 search" placeholder="seARcH">
+                        </form>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img
+                                id="app-add-trick"
+                                src="{{ asset('build/images/app-icon-plus.svg') }}"
+                                alt="add a trick" width="60"
+                            >
+                        </a>
+                    </div>
                 </div>
             </div>
-            {% include 'home/_tricks.html.twig' %}
+            <div id="app-tricks-cards" class="tricks-cards">
+                {% include 'home/_tricks.html.twig' %}
+            </div>
+            {% include 'home/_buttons.html.twig' %}
         </div>
     </section>
 {% endblock %}
