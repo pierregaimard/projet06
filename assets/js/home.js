@@ -5,7 +5,7 @@ import * as List from "list.js";
 let button = document.getElementById("app-tricks-button");
 let tricksSection = document.getElementById("app-tricks-section");
 button.addEventListener("click", function () {
-    tricksSection.style.display = "block"
+    tricksSection.style.display = "block";
 });
 
 // Load more tricks feature
