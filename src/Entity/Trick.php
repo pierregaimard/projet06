@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Trick
 {
+    private const SHORT_DESCRIPTION_LENGTH = 100;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -113,6 +115,18 @@ class Trick
         return $this->description;
     }
 
+    /**
+     * @return string
+     */
+    public function getShortDescription(): string
+    {
+        if (strlen($this->getDescription()) > self::SHORT_DESCRIPTION_LENGTH) {
+            return substr($this->getDescription(), 0, self::SHORT_DESCRIPTION_LENGTH) . '...';
+        }
+
+        return $this->getDescription();
+    }
+
     public function setDescription(string $description): self
     {
         $this->description = $description;
@@ -188,7 +202,15 @@ class Trick
 
     public function getHeadingImage(): ?TrickImage
     {
-        return $this->headingImage;
+        if ($this->headingImage instanceof TrickImage) {
+            return $this->headingImage;
+        }
+
+        if (!$this->getImages()->isEmpty()) {
+            return $this->getImages()->first();
+        }
+
+        return $this->getGenericHeadingImage();
     }
 
     public function setHeadingImage(?TrickImage $headingImage): self
@@ -256,5 +278,16 @@ class Trick
         }
 
         return $this;
+    }
+
+    /**
+     * @return TrickImage
+     */
+    private function getGenericHeadingImage(): TrickImage
+    {
+        $image = new TrickImage();
+        $image->setFileName('generic_image');
+
+        return $image;
     }
 }
