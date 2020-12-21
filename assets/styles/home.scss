@@ -49,22 +49,20 @@
 
 #app-tricks-button:hover {
   transform: scale(1.2) translateY(-30px);
-  transition-timing-function: ease-in-out;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease-in-out;
 }
 
 // Tricks section
 
 #app-tricks-section { display: none; }
 
-@media all and (min-width: 576px){
+@media all and (min-width: 576px) {
   .sticky-top { top: 60px; }
 }
 
-@media all and (max-width: 575px){
+@media all and (max-width: 575px) {
   #app-add-trick { width: 50px; }
 }
-
 
 // Add trick button
 #app-add-trick { transition: transform 0.2s; }
