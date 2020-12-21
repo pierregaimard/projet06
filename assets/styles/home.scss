@@ -73,7 +73,8 @@
 }
 
 // Tricks list
-#app-tricks, #app-tricks li { padding: 15px; }
+#app-tricks,
+#app-tricks li { padding: 15px; }
 
 // Trick card
 .card { transition: transform 0.2s ease-in-out; }
