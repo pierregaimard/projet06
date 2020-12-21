@@ -46,5 +46,5 @@ loadMore.addEventListener("click", function () {
                 tricksList = new List("app-tricks-container", options);
                 tricksSection.scrollIntoView(false);
             }
-        )
-})
+        );
+});
