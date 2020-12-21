@@ -58,11 +58,11 @@
 #app-tricks-section { display: none; }
 
 @media all and (min-width: 576px){
-  .sticky-top {top: 60px;}
+  .sticky-top { top: 60px; }
 }
 
 @media all and (max-width: 575px){
-  #app-add-trick {width: 50px;}
+  #app-add-trick { width: 50px; }
 }
 
 
@@ -75,14 +75,10 @@
 }
 
 // Tricks list
-#app-tricks, #app-tricks li {
-  padding: 15px;
-}
+#app-tricks, #app-tricks li { padding: 15px; }
 
 // Trick card
-.card {
-  transition: transform 0.2s ease-in-out;
-}
+.card { transition: transform 0.2s ease-in-out; }
 
 .card:hover {
   transform: scale(1.05) translateY(-15px);
