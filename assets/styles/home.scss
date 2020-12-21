@@ -57,60 +57,35 @@
 
 #app-tricks-section { display: none; }
 
-// Background
-#app-tricks-section {
-  background-image: url("../images/mountain-down.svg"), url("../images/snowtrick-home-tricks.jpg");
-  background-position: top;
-  background-size: 100%;
-  background-repeat: no-repeat;
+@media all and (min-width: 576px){
+  .sticky-top {top: 60px;}
 }
 
-// Title & button
-@media all and (min-width: 1920px) {
-  #app-tricks-container { padding-top: 250px; }
+@media all and (max-width: 575px){
+  #app-add-trick {width: 50px;}
 }
 
-@media all and (min-width: 1400px) and (max-width: 1920px) {
-  #app-tricks-container { padding-top: 200px; }
-}
-
-@media all and (min-width: 1200px) and (max-width: 1400px) {
-  #app-tricks-container { padding-top: 150px; }
-}
-
-@media all and (min-width: 992px) and (max-width: 1200px) {
-  #app-tricks-container { padding-top: 150px; }
-}
-
-@media all and (min-width: 768px) and (max-width: 992px) {
-  #app-tricks-container { padding-top: 150px; }
-}
-
-@media all and (min-width: 576px) and (max-width: 767px) {
-  #app-tricks-container { padding-top: 150px; }
-}
-
-@media all and (max-width: 568px){
-  #app-tricks-container { padding-top: 150px; }
-  #app-heading-section { padding-top: 80px; }
-}
 
 // Add trick button
 #app-add-trick { transition: transform 0.2s; }
 
 #app-add-trick:hover {
-  transform: scale(1.4) rotate(180deg);
+  transform: scale(1.2) rotate(180deg);
   transition: transform 0.2s;
+}
+
+// Tricks list
+#app-tricks, #app-tricks li {
+  padding: 15px;
 }
 
 // Trick card
 .card {
   transition: transform 0.2s ease-in-out;
-  transform: rotate(-3deg) scale(0.9);
 }
 
 .card:hover {
-  transform: scale(1) rotate(0deg);
+  transform: scale(1.05) translateY(-15px);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -118,4 +93,26 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
+}
+
+// Icon button
+#up-icon {
+  transform: scale(1);
+  transition: transform ease-in-out 0.2s;
+}
+
+#up-icon:hover {
+  transform: scale(1.4) rotate(360deg);
+  transition: transform ease-in-out 0.2s;
+}
+
+// load more button
+#load-more-tricks {
+  transform: scale(1);
+  transition: transform ease-in-out 0.2s;
+}
+
+#load-more-tricks:hover {
+  transform: scale(1.4) translateY(-10px);
+  transition: transform ease-in-out 0.2s;
 }
