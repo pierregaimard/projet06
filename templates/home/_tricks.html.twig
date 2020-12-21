@@ -1,14 +1,16 @@
-<div id="app-tricks" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-    {%
-        include 'home/_trick_card.html.twig'
-        with {
-        'view': '#',
-        'imageName': 'grabs-mute-2',
-        'category': 'gRaBS',
-        'name': 'Mute',
-        'description': 'KJHJhkjh KHhskjhs hskhkjhkjshskj shsj sjhs kjsh jhksjhksjhs',
-        'edit': '#',
-        'remove': '#'
-    }
-    %}
-</div>
+<ul id="app-tricks" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 p-3 list">
+    {% for trick in tricks %}
+        {%
+            include 'home/_trick_card.html.twig'
+            with {
+                'view': path('home'),
+                'imageName': trick.headingImage.fileName,
+                'category': trick.category.name,
+                'name': trick.name,
+                'description': trick.shortDescription,
+                'edit': path('home'),
+                'remove': path('home')
+            }
+        %}
+    {% endfor %}
+</ul>
