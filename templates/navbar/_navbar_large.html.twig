@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand navbar-dark bg-dark d-none d-sm-block">
+<nav id="app-navbar-large" class="navbar fixed-top navbar-expand navbar-dark bg-dark d-none d-sm-block">
     <div class="container-fluid my-2">
         {# brand #}
         <a class="navbar-brand mx-2" href="{{ path('home') }}">
@@ -17,7 +17,7 @@
                     <a class="nav-link fw-light" href="#">sIGN-iN</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-light" href="#">sIgn-uP</a>
+                    <a class="nav-link fw-light" href="{{ path('sign-up') }}">sIgn-uP</a>
                 </li>
             {% else %}
                 <li class="nav-item">
