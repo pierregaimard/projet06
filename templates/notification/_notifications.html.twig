@@ -1,0 +1,23 @@
+<div class="toast-container w-100 position-fixed top-0 text-center">
+    {% for key, message in app.flashes('notifications') %}
+        <div
+            class="toast d-flex align-items-center mx-auto bg-{{ message.type }}"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+            {% if message.autoHide == false %}data-bs-autohide="false"{% endif %}
+            data-bs-delay="{{ message.delay }}"
+        >
+            <div class="toast-body {% if message.type != 'body' %}text-white{% endif %}">
+                {{ message.message|raw }}
+            </div>
+            <button
+                type="button"
+                class="btn-close ms-auto me-2 {% if message.type != 'body' %}btn-close-white{% endif %}"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+            >
+            </button>
+        </div>
+    {% endfor %}
+</div>
