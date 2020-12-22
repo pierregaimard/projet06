@@ -2,19 +2,22 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ encore_entry_link_tags('signup') }}
 {% endblock %}
 
 {% block body %}
-    <section id="signup">
-        <div class="col">
-            <p>Image</p>
-        </div>
-        <div class="col">
-            <p>form</p>
+    <section id="signup" class="container-fluid">
+        <div class="row vh-100">
+            <div id="signup-illustration" class="col d-none d-lg-block">
+            </div>
+            <div id="signup-form" class="col bg-dark text-light d-flex flex-row align-items-center justify-content-center">
+                <p class="align-middle">form</p>
+            </div>
         </div>
     </section>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    {{ encore_entry_script_tags('signup') }}
 {% endblock %}
