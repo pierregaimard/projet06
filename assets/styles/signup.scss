@@ -1,0 +1,21 @@
+// Background
+#signup-illustration {
+  background-image: url("../images/snowtrick-signup-background.jpg");
+  background-position: right bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media all and (max-width: 768px) {
+  #signup-form {
+    background-image: url("../images/snowtrick-signup-background-mobile.jpg");
+    background-position: right bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+// Remove navbar for large devices
+@media all and (min-width: 769px) {
+  #app-navbar-large { top: -100px; }
+}
