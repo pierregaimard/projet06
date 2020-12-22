@@ -11,9 +11,18 @@ $card-height: 100%;
   color: #0ff;
 }
 
+// snow color
 .snow-form input,
 .snow-form input:focus {
   background-color: unset;
   color: white;
   outline: 0;
 }
+
+// Toasts
+.toast-container {
+  margin-top: 100px;
+  z-index: 1100;
+}
+
+.toast-body { text-align: left; }
