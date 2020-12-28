@@ -5,11 +5,10 @@ $input-focus-border-color: #0ff;
 $input-focus-box-shadow: rgba(255, 255, 255, 0.2);
 $enable-shadows: true;
 $card-height: 100%;
+$link-decoration: none;
 
 // Global css
-.snow {
-  color: #0ff;
-}
+.snow { color: #0ff; }
 
 // snow color
 .snow-form input,
