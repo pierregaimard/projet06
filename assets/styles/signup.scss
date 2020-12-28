@@ -13,9 +13,44 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+
+  #signup-form form { width: 100%; }
 }
 
 // Remove navbar for large devices
 @media all and (min-width: 769px) {
   #app-navbar-large { top: -100px; }
+
+  #signup-form form {
+    min-width: 350px;
+    max-width: 450px;
+  }
+}
+
+// Form
+#signup-form form input {
+  background-color: unset;
+  border-top: unset;
+  border-right: unset;
+  border-left: unset;
+  color: white;
+  border-radius: 0;
+}
+
+#signup-form form input:focus { outline-style: none; }
+
+#signup-form form label {
+  color: white;
+  font-weight: lighter;
+}
+
+// Exit button
+#app-signup-exit {
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
+}
+
+#app-signup-exit:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
