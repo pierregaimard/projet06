@@ -7,11 +7,14 @@
 
 {% block body %}
     <section id="signup" class="container-fluid">
-        <div class="row vh-100">
+        <div id="signup-block" class="row min-vh-100">
             <div id="signup-illustration" class="col d-none d-lg-block">
             </div>
-            <div id="signup-form" class="col bg-dark text-light d-flex flex-row align-items-center justify-content-center">
-                <p class="align-middle">form</p>
+            <div
+                id="signup-form"
+                class="col bg-dark text-light d-flex flex-row align-items-center justify-content-center"
+            >
+                {% include 'security/signup/_sign_up_form.html.twig' %}
             </div>
         </div>
     </section>
