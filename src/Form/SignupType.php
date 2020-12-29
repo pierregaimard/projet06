@@ -12,11 +12,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SignupType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array                $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $options = null;
         $builder
+            ->add('firstName', TextType::class, ['attr' => ['placeholder' => 'firstname', 'autofocus' => true]])
+            ->add('lastName', TextType::class, ['attr' => ['placeholder' => 'lastname']])
             ->add('username', TextType::class, ['attr' => ['placeholder' => 'username']])
+            ->add('email', EmailType::class, ['attr' => ['placeholder' => 'email']])
             ->add(
                 'plainPassword',
                 PasswordType::class,
@@ -26,12 +33,12 @@ class SignupType extends AbstractType
                     'always_empty' => false
                 ]
             )
-            ->add('firstName', TextType::class, ['attr' => ['placeholder' => 'firstname']])
-            ->add('lastName', TextType::class, ['attr' => ['placeholder' => 'lastname']])
-            ->add('email', EmailType::class, ['attr' => ['placeholder' => 'email']])
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
