@@ -12,12 +12,12 @@ class UserStatusFixtures extends Fixture
     {
         // Validation status
         $validation = new UserStatus();
-        $validation->setStatus('VALIDATION');
+        $validation->setStatus(UserStatus::STATUS_VALIDATION);
         $manager->persist($validation);
 
         // Active status
         $active = new UserStatus();
-        $active->setStatus('ACTIVE');
+        $active->setStatus(UserStatus::STATUS_ACTIVE);
         $manager->persist($active);
 
         $manager->flush();

@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserStatus
 {
+    public const STATUS_VALIDATION = 'VALIDATION';
+    public const STATUS_ACTIVE     = 'ACTIVE';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

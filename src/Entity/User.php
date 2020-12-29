@@ -7,12 +7,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity("username", message="This username already exists.")
+ * @UniqueEntity("email", message="This email already exists.")
  */
 class User implements UserInterface
 {
+    public const ROLE_USER = 'ROLE_USER';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,7 +27,9 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=16, unique=true)
+     * @Assert\NotBlank
+     * @Assert\Length(min="3", max="16")
      */
     private $username;
 
@@ -31,6 +39,16 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @var string|null
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/",
+     *     message="This password is not safe."
+     * )
+     */
+    private $plainPassword;
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -38,16 +56,22 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank
+     * @Assert\Length(min="2", max="30")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank
+     * @Assert\Length(min="2", max="30")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Email()
      */
     private $email;
 
@@ -87,7 +111,7 @@ class User implements UserInterface
         return (string) $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(?string $username): self
     {
         $this->username = $username;
 
@@ -101,7 +125,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = self::ROLE_USER;
 
         return array_unique($roles);
     }
@@ -111,6 +135,22 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 
     /**
@@ -141,8 +181,7 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 
     public function getFirstName(): ?string
