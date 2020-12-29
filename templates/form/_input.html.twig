@@ -1,14 +1,22 @@
-{% if formElm.vars.submitted == true  %}
-    {% if formElm.vars.valid == true %}
+{% set state = '' %}
+{% if formElm.vars.submitted == true %}
+    {% if formElm.vars.valid == true and formElm.vars.value != null %}
         {% set state = 'is-valid' %}
     {% elseif formElm.vars.valid == false %}
         {% set state = 'is-invalid' %}
     {% endif %}
-{% else %}
-    {% set state = '' %}
 {% endif %}
+
 <div class="form-floating mb-3 text-body">
-    {{ form_widget(formElm, {attr: {'class': 'form-control ' ~ state , 'aria-describedby': formElm.vars.id ~ 'validation'}}) }}
+    {{ form_widget(
+        formElm,
+        {
+            attr: {
+                'class': 'form-control ' ~ state ,
+                'aria-describedby': formElm.vars.id ~ 'validation'
+            }
+        }
+    ) }}
     {{ form_label(formElm) }}
     {% if formElm.vars.errors is not null  %}
         <div id="{{ formElm.vars.id ~ 'validation' }}" class="invalid-feedback">
