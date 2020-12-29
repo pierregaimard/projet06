@@ -1,0 +1,16 @@
+// Form
+#form-one form input {
+  background-color: unset;
+  border-top: unset;
+  border-right: unset;
+  border-left: unset;
+  color: white;
+  border-radius: 0;
+}
+
+#form-one form input:focus { outline-style: none; }
+
+#form-one form label {
+  color: white;
+  font-weight: lighter;
+}
