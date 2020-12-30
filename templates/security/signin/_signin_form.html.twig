@@ -1,4 +1,4 @@
-<form id="app-login" method="post" class="needs-validation" novalidate>
+<form id="app-form" method="post" class="needs-validation" novalidate>
     {# Title #}
     <p class="display-5 fw-lighter m-0">
         SN<span class="snow">o</span>W<br/>
@@ -47,7 +47,7 @@
     {# Submit & forgot password #}
     <div class="d-flex flex-row justify-content-between align-items-center mt-5">
         <button type="submit"  class="btn btn-outline-info px-4" formnovalidate>Sign-in</button>
-        <a href="{{ path('home') }}" class="link-info text-center">Forgot your password ?</a>
+        <a href="{{ path('forgot_password_step1') }}" class="link-info text-center">Forgot your password ?</a>
     </div>
 
     {# Register for small devices #}
