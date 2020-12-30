@@ -2,10 +2,9 @@
 
 namespace App\Controller\Security;
 
-use App\Entity\AccountValidation;
 use App\Entity\User;
-use App\Form\AccountValidationType;
-use App\Form\SignupType;
+use App\Form\ForgotPasswordStepTwoType;
+use App\Form\ForgotPasswordStepOneType;
 use App\Service\Notification\Notification;
 use App\Service\Notification\NotificationManager;
 use App\Service\Security\EmailValidation\EmailValidation;
@@ -15,9 +14,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class SignupController extends AbstractController
+/**
+ * @Route("/forgot-password", name="forgot_password_")
+ */
+class ForgotPasswordController extends AbstractController
 {
     /**
      * @var EmailValidation
@@ -29,6 +30,10 @@ class SignupController extends AbstractController
      */
     private NotificationManager $notificationManager;
 
+    /**
+     * @param EmailValidation     $emailValidation
+     * @param NotificationManager $notificationManager
+     */
     public function __construct(EmailValidation $emailValidation, NotificationManager $notificationManager)
     {
         $this->emailValidation     = $emailValidation;
@@ -36,67 +41,71 @@ class SignupController extends AbstractController
     }
 
     /**
-     * @Route("/sign-up", name="sign-up")
+     * @Route("/email", name="step1")
      *
-     * @param Request $request
+     * @param Request         $request
+     * @param EmailValidation $emailValidation
      *
      * @return Response
      *
      * @throws TransportExceptionInterface
      */
-    public function signUp(Request $request): Response
+    public function forgotPassword(Request $request, EmailValidation $emailValidation): Response
     {
         $user = new User();
-        $form = $this->createForm(SignupType::class, $user);
-
+        $form = $this->createForm(ForgotPasswordStepOneType::class, $user);
         $form->handleRequest($request);
+
+        $message = null;
+        $emailSent = false;
+
         if ($form->isSubmitted() && $form->isValid()) {
-            // Save user
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user);
-            $manager->flush();
+            $userTest = $manager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+            if (!$userTest instanceof User) {
+                $message = 'app.signup.account_not_found';
+            }
 
-            // Send account email validation to user
-            $this->emailValidation->sendValidationLink(
-                $user,
-                'account_email_validation',
-                'Account validation',
-                'email/account_email_validation.html.twig'
-            );
+            if (!$message) {
+                $emailValidation->sendValidationLink(
+                    $userTest,
+                    'forgot_password_step2',
+                    'Reset password',
+                    'email/reset_password_check.html.twig'
+                );
 
-            // Success notification
-            $this->notificationManager->add(new Notification(
-                'Your account has been created!. We sent you an email to confirm your subscription.',
-                Notification::TYPE_SUCCESS
-            ));
-            $this->notificationManager->dispatch();
-
-            return $this->redirectToRoute('home');
+                $emailSent = true;
+            }
         }
 
-        return $this->render('security/signup/signup.html.twig', ['form' => $form->createView()]);
+        return $this->render(
+            'security/forgot_password/forgot_password_step1.html.twig',
+            [
+                'form' => $form->createView(),
+                'message' => $message,
+                'emailSent' => $emailSent,
+            ]
+        );
     }
 
     /**
-     * @Route("/Security/Account/EmailValidation/{token}/{expires}", name="account_email_validation")
+     * @Route("/change/{token}/{expires}", name="step2")
      *
-     * @param string                       $token
-     * @param string                       $expires
-     * @param Request                      $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param UserManager                  $userManager
+     * @param string      $token
+     * @param string      $expires
+     * @param Request     $request
+     * @param UserManager $userManager
      *
      * @return Response
      */
-    public function accountEmailValidation(
+    public function changePassword(
         string $token,
         string $expires,
         Request $request,
-        UserPasswordEncoderInterface $passwordEncoder,
         UserManager $userManager
     ): Response {
-        $accountValidation = new AccountValidation();
-        $form = $this->createForm(AccountValidationType::class, $accountValidation);
+        $formUser = new User();
+        $form = $this->createForm(ForgotPasswordStepTwoType::class, $formUser);
         $form->handleRequest($request);
 
         $message = null;        // Error message
@@ -107,30 +116,26 @@ class SignupController extends AbstractController
             $userRepository = $manager->getRepository(User::class);
 
             // Username check
-            $user = $userRepository->findOneBy(['username' => $accountValidation->getUsername()]);
+            $user = $userRepository->findOneBy(['username' => $formUser->getUsername()]);
             if (!$user instanceof User) {
                 $message = 'app.signup.account_not_found';
             }
 
-            // User password check
-            if (!$message && !$passwordEncoder->isPasswordValid($user, $accountValidation->getPassword())) {
-                $message = 'app.signup.invalid_password';
-            }
-
             // Token check
             if (!$message && !$this->emailValidation->isTokenValid($user, $token, $expires)) {
-                $message = 'app.signup.invalid_token';
+                $message = 'app.change_password.invalid_token';
                 $invalidToken = true;
             }
 
             // If success
             if (!$message) {
-                // Update user status
-                $userManager->activate($user);
+                // Update user password
+                $user->setPlainPassword($formUser->getPlainPassword());
+                $userManager->setPassword($user);
+                $manager->flush();
 
-                // Success notification
                 $this->notificationManager->add(new Notification(
-                    'Your account has been validated!',
+                    'Your password has been changed successfully!',
                     Notification::TYPE_SUCCESS
                 ));
                 $this->notificationManager->dispatch();
@@ -140,11 +145,11 @@ class SignupController extends AbstractController
         }
 
         return $this->render(
-            'security/signup/account_validation.html.twig',
+            'security/forgot_password/forgot_password_step2.html.twig',
             [
                 'form' => $form->createView(),
                 'message' => $message,
-                'invalidToken' => $invalidToken
+                'invalidToken' => $invalidToken,
             ]
         );
     }
