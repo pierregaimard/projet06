@@ -17,3 +17,15 @@ for (let toastElm of toasts) {
     let toast = new Toast(toastElm);
     toast.show();
 }
+
+// Form management
+let form = document.getElementById("app-form");
+
+form.addEventListener("submit", function (event) {
+    if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    form.classList.add("was-validated");
+}, false);
