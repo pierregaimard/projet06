@@ -14,17 +14,17 @@
     background-repeat: no-repeat;
   }
 
-  #form-one form { width: 100%; }
+  #form-one form {
+    width: 100%;
+    max-width: 350px;
+  }
 }
 
 // Remove navbar for large devices
 @media all and (min-width: 769px) {
   #app-navbar-large { top: -100px; }
 
-  #form-one form {
-    min-width: 350px;
-    max-width: 450px;
-  }
+  #form-one form { width: 350px; }
 }
 
 // Exit button
