@@ -7,16 +7,16 @@
         <a href="{{ path('home') }}" aria-current="page">
             <img src="{{ asset('build/images/mobile-nav-icon-tricks.svg') }}" alt="SnowTricks" height="26">
         </a>
-        {% if app.user is null %}
-            <a class="mx-3" href="{{ path('home') }}" aria-current="page">
-                <img src="{{ asset('build/images/mobile-nav-icon-login.svg') }}" alt="SnowTricks login" height="26">
-            </a>
-        {% else %}
-            <a class="mx-3" href="{{ path('home') }}" aria-current="page">
-                <img src="{{ asset('build/images/mobile-nav-icon-logout.svg') }}" alt="SnowTricks logout" height="26">
-            </a>
+        {% if app.user %}
             <a class="mx-3" href="{{ path('home') }}" aria-current="page">
                 <img src="{{ asset('build/images/mobile-nav-icon-account.svg') }}" alt="SnowTricks account" height="26">
+            </a>
+            <a class="mx-3" href="{{ path('app_logout') }}" aria-current="page">
+                <img src="{{ asset('build/images/mobile-nav-icon-logout.svg') }}" alt="SnowTricks logout" height="26">
+            </a>
+        {% else %}
+            <a class="mx-3" href="{{ path('app_login') }}" aria-current="page">
+                <img src="{{ asset('build/images/mobile-nav-icon-login.svg') }}" alt="SnowTricks login" height="26">
             </a>
         {% endif %}
     </div>
