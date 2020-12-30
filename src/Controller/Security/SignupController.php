@@ -13,6 +13,7 @@ use App\Service\Security\User\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -40,6 +41,8 @@ class SignupController extends AbstractController
      * @param Request $request
      *
      * @return Response
+     *
+     * @throws TransportExceptionInterface
      */
     public function signUp(Request $request): Response
     {
@@ -96,8 +99,8 @@ class SignupController extends AbstractController
         $form = $this->createForm(AccountValidationType::class, $accountValidation);
         $form->handleRequest($request);
 
-        $message = null;
-        $invalidToken = false;
+        $message = null;        // Error message
+        $invalidToken = false;  // Email token
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
