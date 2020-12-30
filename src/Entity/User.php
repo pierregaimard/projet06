@@ -12,8 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity("username", message="This username already exists.")
- * @UniqueEntity("email", message="This email already exists.")
+ * @UniqueEntity("username", message="This username already exists.", groups={"signup"})
+ * @UniqueEntity("email", message="This email already exists.", groups={"signup"})
  */
 class User implements UserInterface
 {
@@ -28,8 +28,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=16, unique=true)
-     * @Assert\NotBlank
-     * @Assert\Length(min="3", max="16")
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step2"})
+     * @Assert\Length(min="3", max="16", groups={"signup"})
      */
     private $username;
 
@@ -40,10 +40,11 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     * @Assert\NotBlank
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step2"})
      * @Assert\Regex(
      *     "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/",
-     *     message="This password is not safe."
+     *     message="This password is not safe.",
+*          groups={"signup", "forgot_password_step2"}
      * )
      */
     private $plainPassword;
@@ -56,22 +57,22 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank
-     * @Assert\Length(min="2", max="30")
+     * @Assert\NotBlank(groups={"signup"})
+     * @Assert\Length(min="2", max="30", groups={"signup"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank
-     * @Assert\Length(min="2", max="30")
+     * @Assert\NotBlank(groups={"signup"})
+     * @Assert\Length(min="2", max="30", groups={"signup"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank
-     * @Assert\Email()
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step1"})
+     * @Assert\Email(groups={"signup", "forgot_password_step1"})
      */
     private $email;
 
