@@ -37,24 +37,25 @@ window.addEventListener("DOMContentLoaded", function () {
         modal.show();
     };
 
+    const fileWatcher = function (file) {
+        let reader;
+
+        if (URL) {
+            done(URL.createObjectURL(file));
+        } else if (FileReader) {
+            reader = new FileReader();
+            reader.onload = function (e) {
+                done(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
     // Form selected file
     input.addEventListener("change", function (e) {
         const files = e.target.files;
-        let reader;
-        let file;
-
         if (files && files.length > 0) {
-            file = files[0];
-
-            if (URL) {
-                done(URL.createObjectURL(file));
-            } else if (FileReader) {
-                reader = new FileReader();
-                reader.onload = function (e) {
-                    done(reader.result);
-                };
-                reader.readAsDataURL(file);
-            }
+            fileWatcher(files[0]);
         }
     });
 
