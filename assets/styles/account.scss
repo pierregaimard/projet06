@@ -1,0 +1,45 @@
+@import "~cropperjs/dist/cropper.min.css";
+
+// Container
+@media all and (min-width: 769px) {
+  #app-account-section {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    min-width: 400px;
+    max-width: 400px;
+  }
+}
+
+@media all and (max-width: 576px) {
+  #app-account-section {
+    padding-top: 30px;
+    margin-bottom: 80px;
+  }
+}
+
+// Account image
+input[type="file"]#input { width: 0; }
+
+.img-container img {
+  display: block;
+  max-width: 100%;
+}
+
+.cropper-view-box,
+.cropper-face { border-radius: 50%; }
+
+#app-account-section form input {
+  background-color: unset;
+  border-top: unset;
+  border-right: unset;
+  border-left: unset;
+  color: white;
+  border-radius: 0;
+}
+
+#app-account-section form input:focus { outline-style: none; }
+
+#app-account-section form label {
+  color: white;
+  font-weight: lighter;
+}

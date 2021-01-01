@@ -12,8 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity("username", message="This username already exists.", groups={"signup"})
- * @UniqueEntity("email", message="This email already exists.", groups={"signup"})
+ * @UniqueEntity("username", message="This username already exists.", groups={"signup", "account_info"})
+ * @UniqueEntity("email", message="This email already exists.", groups={"signup", "account_info"})
  */
 class User implements UserInterface
 {
@@ -28,8 +28,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=16, unique=true)
-     * @Assert\NotBlank(groups={"signup", "forgot_password_step2"})
-     * @Assert\Length(min="3", max="16", groups={"signup"})
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step2", "account_info"})
+     * @Assert\Length(min="3", max="16", groups={"signup", "account_info"})
      */
     private $username;
 
@@ -57,22 +57,22 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank(groups={"signup"})
-     * @Assert\Length(min="2", max="30", groups={"signup"})
+     * @Assert\NotBlank(groups={"signup", "account_info"})
+     * @Assert\Length(min="2", max="30", groups={"signup", "account_info"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Assert\NotBlank(groups={"signup"})
-     * @Assert\Length(min="2", max="30", groups={"signup"})
+     * @Assert\NotBlank(groups={"signup", "account_info"})
+     * @Assert\Length(min="2", max="30", groups={"signup", "account_info"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(groups={"signup", "forgot_password_step1"})
-     * @Assert\Email(groups={"signup", "forgot_password_step1"})
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step1", "account_info"})
+     * @Assert\Email(groups={"signup", "forgot_password_step1", "account_info"})
      */
     private $email;
 
@@ -223,6 +223,10 @@ class User implements UserInterface
 
     public function getPicture(): ?string
     {
+        if (!$this->picture) {
+            return 'app-icon-generic-account.png';
+        }
+
         return $this->picture;
     }
 

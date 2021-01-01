@@ -6,6 +6,7 @@
         "bootstrap": "^5.0.0-beta1",
         "bootstrap-icons": "^1.2.1",
         "core-js": "^3.0.0",
+        "cropperjs": "^1.5.9",
         "list.js": "^2.3.0",
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.30.0",

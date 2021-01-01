@@ -1,0 +1,12 @@
+{{ form_start(form, {'method': 'POST', 'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    {% include 'form/_input.html.twig' with {'formElm': form.firstName} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.lastName} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.username} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.email} %}
+    <div class="mt-4">
+        <button type="submit"  class="btn btn-outline-info w-100" formnovalidate>
+            Update my information
+        </button>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}

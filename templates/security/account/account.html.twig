@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('account') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid min-vh-100 bg-dark text-light">
+        <section id="app-account-section" class="container">
+            {# Title #}
+            <h1 class="display-2 fw-lighter text-center">
+                A<span class="text-info">cc</span>ount
+            </h1>
+
+            {# Image section #}
+            <p class="text-center position-relative">
+                <img id="avatar" src="{{ asset(account_img_dir ~ app.user.picture) }}" alt="avatar" width="200">
+            </p>
+            <p
+                id="app-account-image-section"
+                class="text-center position-relative"
+                data-route="{{ path('account_avatar') }}"
+            >
+                <label class="label">
+                    <span class="btn btn-outline-info">
+                        Change my image
+                        <input type="file" id="input" class="bg-dark" name="image" accept="image/jpeg">
+                    </span>
+                </label>
+                {% include 'security/account/_image_modal.html.twig' %}
+            </p>
+
+            {# Information section #}
+            <div class="mt-5">
+                <h2 class="fw-lighter text-center mb-3">Information</h2>
+                {% include 'security/account/_account_info_form.html.twig' with {'form': formInfo} %}
+            </div>
+
+            {# Password section #}
+            <div class="my-5">
+                <h2 class="fw-lighter text-center mb-3">Password</h2>
+                {% include 'security/account/_account_password_form.html.twig' with {'form': formPassword} %}
+            </div>
+
+            {# Delete account section #}
+            <div class="mt-5">
+                <h2 class="fw-lighter text-center mb-3 text-danger">Danger zone</h2>
+                <button id="app-remove-account-button" type="button" class="btn btn-outline-danger w-100">
+                    Delete my account
+                </button>
+                {% include 'security/account/_account_delete_confirm.html.twig' %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('account') }}
+{% endblock %}
