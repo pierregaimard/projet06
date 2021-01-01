@@ -4,7 +4,7 @@ import Modal from "bootstrap/js/dist/modal";
 import Cropper from "cropperjs";
 
 // Account Image crop implements cropper.js
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener("DOMContentLoaded", function () {
     const avatar = document.getElementById("avatar");
     const image = document.getElementById("crop-image");
     const input = document.getElementById("input");
@@ -31,14 +31,15 @@ window.addEventListener('DOMContentLoaded', function () {
         return canvas;
     }
 
+    const done = function (url) {
+        input.value = "";
+        image.src = url;
+        modal.show();
+    };
+
     // Form selected file
     input.addEventListener("change", function (e) {
         const files = e.target.files;
-        const done = function (url) {
-            input.value = '';
-            image.src = url;
-            modal.show();
-        };
         let reader;
         let file;
 
@@ -95,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         if (response.status === 500) {
                             response.json().then(
                                 (result) => { alert(result.result); }
-                            )
+                            );
                         }
                     });
             });
@@ -104,11 +105,11 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 // Remove account modal
-const removeAccountButton = document.getElementById('app-remove-account-button');
+const removeAccountButton = document.getElementById("app-remove-account-button");
 const removeModal = new Modal(
-    document.getElementById('app-account-remove-confirm')
+    document.getElementById("app-account-remove-confirm")
 );
 
-removeAccountButton.addEventListener('click', function (e) {
+removeAccountButton.addEventListener("click", function (e) {
     removeModal.show();
 });
