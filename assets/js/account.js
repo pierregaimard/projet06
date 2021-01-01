@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", function () {
             };
             reader.readAsDataURL(file);
         }
-    }
+    };
 
     // Form selected file
     input.addEventListener("change", function (e) {
