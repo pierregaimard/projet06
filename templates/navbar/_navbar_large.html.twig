@@ -14,13 +14,12 @@
             </li>
             {% if app.user %}
                 <li class="nav-item">
-                    <a class="nav-link fw-light" href="#">
-                        <i class="bi bi-person-bounding-box bg-dark"></i>
+                    <a class="nav-link fw-light" href="{{ path('account') }}">
                         aCCouNT
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-light" href="{{ path('app_logout') }}">loGouT</a>
+                    <a class="nav-link fw-light" href="{{ path('app_logout') }}">LOgoUT</a>
                 </li>
             {% else %}
                 <li class="nav-item">
