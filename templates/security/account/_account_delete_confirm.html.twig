@@ -1,0 +1,30 @@
+<div
+    class="modal fade"
+    id="app-account-remove-confirm"
+    tabindex="-1"
+    aria-labelledby="delete-account-confirm"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+            </div>
+            <div class="modal-body text-danger text-center">
+                <p class="lead">
+                    are you sure you want to delete your account ?<br>
+                </p>
+                <p>
+                    <i>this action cannot be undone. your comments will also be definitively deleted.</i>
+                </p>
+            </div>
+            <div class="modal-footer border-0 text-center justify-content-center">
+                <button type="button" class="btn btn-sm btn-outline-secondary px-4" data-bs-dismiss="modal">
+                    Abort
+                </button>
+                <a href="{{ path('account_delete') }}" class="btn btn-sm btn-outline-danger">
+                    Delete my account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
