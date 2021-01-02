@@ -7,10 +7,12 @@ use App\Form\AccountInformationType;
 use App\Form\AccountPasswordType;
 use App\Service\Notification\Notification;
 use App\Service\Notification\NotificationManager;
+use App\Service\Security\EmailValidation\EmailValidation;
 use App\Service\Security\User\UserManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
@@ -76,5 +78,35 @@ class AccountController extends AbstractController
                 'formPassword' => $formPassword->createView()
             ]
         );
+    }
+
+    /**
+     * @Route("/account/email-validation", name="account_send_email_validation")
+     *
+     * @param EmailValidation     $emailValidation
+     * @param NotificationManager $notification
+     *
+     * @return Response
+     *
+     * @throws TransportExceptionInterface
+     */
+    public function sendEmailValidationLink(
+        EmailValidation $emailValidation,
+        NotificationManager $notification
+    ): Response {
+        $emailValidation->sendValidationLink(
+            $this->getUser(),
+            'account_email_validation',
+            'Account validation',
+            'email/account_email_validation.html.twig'
+        );
+
+        $notification->add(new Notification(
+            'We sent you a new account email validation. Please check your mails!',
+            Notification::TYPE_INFO
+        ));
+        $notification->dispatch();
+
+        return $this->redirectToRoute('account');
     }
 }
