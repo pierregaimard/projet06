@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('trick_add') }}
+{% endblock %}
+
+{% block body %}
+    <section id="trick-add" class="container container-sm text-light">
+        <h1 class="fw-lighter">Add a nEw TrICk</h1>
+        {% include "trick/_add_form.html.twig" %}
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('trick_add') }}
+{% endblock %}
