@@ -20,19 +20,6 @@ class TrickAdd {
         return inputContainer;
     }
 
-    static getRemoveButton()
-    {
-        // Button
-        const button = document.createElement("button");
-        button.setAttribute("class", "btn btn-sm btn-outline-info");
-
-        // Button text
-        let text = document.createTextNode("Remove");
-        button.appendChild(text);
-
-        return button;
-    }
-
     static getValidationTemplate(message)
     {
         // Div
@@ -46,28 +33,32 @@ class TrickAdd {
         return feedBack;
     }
 
-    static getInputTemplate(id, name)
+    static getInputTemplate(id, name, required)
     {
         const inputTemplate = document.createElement("input");
         inputTemplate.setAttribute("id", id);
         inputTemplate.setAttribute("name", name);
         inputTemplate.setAttribute("class", "form-control");
 
+        if (required === true) {
+            inputTemplate.setAttribute("required", "required");
+        }
+
         return inputTemplate;
     }
 
-    static getImageTemplate(id, name)
+    static getImageTemplate(id, name, required)
     {
-        const fileTemplate = this.getInputTemplate(id, name);
+        const fileTemplate = this.getInputTemplate(id, name, required);
         fileTemplate.setAttribute("type", "file");
         fileTemplate.setAttribute("accept", "image/jpeg");
 
         return fileTemplate;
     }
 
-    static getTextTemplate(id, name)
+    static getTextTemplate(id, name, required)
     {
-        const fileTemplate = this.getInputTemplate(id, name);
+        const fileTemplate = this.getInputTemplate(id, name, required);
         fileTemplate.setAttribute("type", "text");
 
         return fileTemplate;
@@ -86,6 +77,17 @@ class TrickAdd {
         return button;
     }
 
+    static setRemoveButton(globalContainer, counter, id)
+    {
+        if (counter > 1) {
+            let button = this.getRemoveButtonTemplate(id);
+            button.addEventListener("click", () => {
+                globalContainer.remove();
+            });
+            globalContainer.append(button);
+        }
+    }
+
     static getField(counter, type, required = false)
     {
         if (!type || !counter) {
@@ -101,17 +103,13 @@ class TrickAdd {
             case this.typeImage:
                 id = `trick_${type}_${counter}_uploadedFile`;
                 name = `trick[${type}][${counter}][uploadedFile]`;
-                inputTemplate = this.getImageTemplate(id, name);
+                inputTemplate = this.getImageTemplate(id, name, required);
                 break;
             case this.typeVideo:
                 id = `trick_${type}_${counter}_tag`;
                 name = `trick[${type}][${counter}][tag]`;
-                inputTemplate = this.getTextTemplate(id, name);
+                inputTemplate = this.getTextTemplate(id, name, required);
                 break;
-        }
-
-        if (required === true) {
-            inputTemplate.setAttribute("required", "required");
         }
 
         let fieldTemplate = this.getBaseTemplate(idBaseTemplate);
@@ -120,13 +118,7 @@ class TrickAdd {
         fieldTemplate.append(inputTemplate);
 
         globalContainer.append(fieldTemplate);
-        if (counter > 1) {
-            let button = this.getRemoveButtonTemplate(id);
-            button.addEventListener("click", () => {
-                globalContainer.remove();
-            });
-            globalContainer.append(button);
-        }
+        this.setRemoveButton(globalContainer, counter, id);
 
         return globalContainer;
     }
