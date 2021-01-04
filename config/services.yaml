@@ -77,3 +77,9 @@ services:
     App\Service\Security\EmailValidation\TimeManager:
         arguments:
             $lifetime: '%env(EMAIL_VALIDATION_LIFETIME)%'
+
+    App\Service\Trick\Image\TrickImageManager:
+        arguments:
+            $imgServerDir: '%app.server_trick_img_dir%'
+            $width: 1180
+            $resolution: 100
