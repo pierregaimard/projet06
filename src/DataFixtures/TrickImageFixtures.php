@@ -76,7 +76,7 @@ class TrickImageFixtures extends Fixture implements DependentFixtureInterface
                 $name = 'trickImage' . $count;
                 $$name = new TrickImage();
                 $$name->setTrick($this->getReference($item[self::KEY_TRICK]));
-                $$name->setFileName($item[self::KEY_FILE] . $subCount);
+                $$name->setFileName($item[self::KEY_FILE] . $subCount . '.jpg');
                 $manager->persist($$name);
             }
         }

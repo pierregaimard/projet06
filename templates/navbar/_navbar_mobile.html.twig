@@ -4,7 +4,7 @@
         <a class="mx-3" href="{{ path('home') }}" aria-current="page">
             <img src="{{ asset('build/images/mobile-nav-icon-home.svg') }}" alt="SnowTricks home" height="26">
         </a>
-        <a href="{{ path('home') }}" aria-current="page">
+        <a href="{{ path('home', {'_fragment': 'app-tricks-section'}) }}" aria-current="page">
             <img src="{{ asset('build/images/mobile-nav-icon-tricks.svg') }}" alt="SnowTricks" height="26">
         </a>
         {% if app.user %}

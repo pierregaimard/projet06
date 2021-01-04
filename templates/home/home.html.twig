@@ -26,6 +26,7 @@
             </a>
         </div>
     </section>
+
     {# Tricks section #}
     <section id="app-tricks-section" class="bg-dark pb-5 pt-2 pt-sm-5">
         <div id="app-tricks-container" class="container pt-sm-5">
@@ -40,7 +41,7 @@
                         </form>
                     </div>
                     <div>
-                        <a href="#">
+                        <a href="{{ path('trick_add') }}">
                             <img
                                 id="app-add-trick"
                                 src="{{ asset('build/images/app-icon-plus.svg') }}"

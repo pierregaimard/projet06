@@ -4,21 +4,21 @@ import Modal from "bootstrap/js/dist/modal";
 import Cropper from "cropperjs";
 
 // Account Image crop implements cropper.js
-window.addEventListener("DOMContentLoaded", function () {
-    const avatar = document.getElementById("avatar");
-    const image = document.getElementById("crop-image");
-    const input = document.getElementById("input");
-    const modalElm = document.getElementById("app-image-modal");
-    const modal = new Modal(modalElm);
+window.addEventListener("DOMContentLoaded", () => {
+    let avatar = document.getElementById("avatar");
+    let image = document.getElementById("crop-image");
+    let input = document.getElementById("input");
+    let modalElm = document.getElementById("app-image-modal");
+    let modal = new Modal(modalElm);
     let cropper;
 
     // Rounded crop canvas function
     function getRoundedCanvas(sourceCanvas)
     {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-        const width = sourceCanvas.width;
-        const height = sourceCanvas.height;
+        let canvas = document.createElement("canvas");
+        let context = canvas.getContext("2d");
+        let width = sourceCanvas.width;
+        let height = sourceCanvas.height;
 
         canvas.width = width;
         canvas.height = height;
@@ -31,20 +31,20 @@ window.addEventListener("DOMContentLoaded", function () {
         return canvas;
     }
 
-    const done = function (url) {
+    let done = (url) => {
         input.value = "";
         image.src = url;
         modal.show();
     };
 
-    const fileWatcher = function (file) {
+    let fileWatcher = (file) => {
         let reader;
 
         if (URL) {
             done(URL.createObjectURL(file));
         } else if (FileReader) {
             reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = (e) => {
                 done(reader.result);
             };
             reader.readAsDataURL(file);
@@ -52,27 +52,27 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 
     // Form selected file
-    input.addEventListener("change", function (e) {
-        const files = e.target.files;
+    input.addEventListener("change", (e) => {
+        let files = e.target.files;
         if (files && files.length > 0) {
             fileWatcher(files[0]);
         }
     });
 
-    modalElm.addEventListener("shown.bs.modal", function () {
+    modalElm.addEventListener("shown.bs.modal", () => {
         cropper = new Cropper(image, {
             aspectRatio: 1,
             viewMode: 2,
         });
     });
 
-    modalElm.addEventListener("hidden.bs.modal", function () {
+    modalElm.addEventListener("hidden.bs.modal", () => {
         cropper.destroy();
         cropper = null;
     });
 
     // Asynchronous cropped file upload
-    document.getElementById("app-account-avatar-crop").addEventListener("click", function () {
+    document.getElementById("app-account-avatar-crop").addEventListener("click", () => {
         let croppedCanvas;
         let canvas;
 
@@ -85,15 +85,15 @@ window.addEventListener("DOMContentLoaded", function () {
             });
             canvas = getRoundedCanvas(croppedCanvas);
             avatar.src = canvas.toDataURL();
-            canvas.toBlob(function (blob) {
-                const formData = new FormData();
-                const route = document.getElementById("app-account-image-section").dataset.route;
+            canvas.toBlob((blob) => {
+                let formData = new FormData();
+                let route = document.getElementById("app-account-image-section").dataset.route;
                 formData.append("avatar", blob);
                 fetch(route, {
                     method: "POST",
                     body: formData,
                 })
-                    .then(function (response) {
+                    .then((response) => {
                         if (response.status === 500) {
                             response.json().then(
                                 (result) => { alert(result.result); }
@@ -106,11 +106,11 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 // Remove account modal
-const removeAccountButton = document.getElementById("app-remove-account-button");
-const removeModal = new Modal(
+let removeAccountButton = document.getElementById("app-remove-account-button");
+let removeModal = new Modal(
     document.getElementById("app-account-remove-confirm")
 );
 
-removeAccountButton.addEventListener("click", function (e) {
+removeAccountButton.addEventListener("click", (e) => {
     removeModal.show();
 });

@@ -10,7 +10,7 @@
                 <a class="nav-link active fw-light" aria-current="page" href="{{ path('home') }}">hOme</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-light" href="#">TrIcKS</a>
+                <a class="nav-link fw-light" href="{{ path('home', {'_fragment': 'app-tricks-section'}) }}">TrIcKS</a>
             </li>
             {% if app.user %}
                 <li class="nav-item">
