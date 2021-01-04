@@ -1,0 +1,34 @@
+{# State variable: Default('') #}
+{% set state = '' %}
+{% if formElm.vars.submitted == true %}
+    {% if formElm.vars.valid == true and formElm.vars.value != null %}
+        {% set state = 'is-valid' %}
+    {% elseif formElm.vars.valid == false %}
+        {% set state = 'is-invalid' %}
+    {% endif %}
+{% endif %}
+
+{# Form field container #}
+<div class="form-floating mb-3 text-body">
+
+    {# Input #}
+    {{ form_widget(
+        formElm,
+        {
+            attr: {
+            'class': 'form-control ' ~ state ,
+            'aria-describedby': formElm.vars.id ~ 'validation'
+        }
+        }
+    ) }}
+
+    {# Label #}
+    {{ form_label(formElm) }}
+
+    {# Error message container #}
+    {% if formElm.vars.errors is not null  %}
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    {% endif %}
+</div>
