@@ -7,6 +7,8 @@ parameters:
     app.project_dir: '%kernel.project_dir%'
     app.server_account_img_dir: '%kernel.project_dir%/public/account_images/'
     app.public_account_img_dir: 'account_images/'
+    app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
+    app.public_trick_img_dir: 'tricks_images/'
 
 services:
     # default configuration for services in *this* file
