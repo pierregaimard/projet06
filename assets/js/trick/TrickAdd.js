@@ -90,10 +90,6 @@ class TrickAdd {
 
     static getField(counter, type, required = false)
     {
-        if (!type || !counter) {
-            return;
-        }
-
         let inputTemplate;
         let id;
         let name;
