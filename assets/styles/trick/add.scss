@@ -1,0 +1,29 @@
+#trick-add {
+  max-width: 600px;
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+
+@media all and (min-width: 768px) {
+  #trick-add { margin-top: 80px; }
+}
+
+#trick-add form input,
+#trick-add form select,
+#trick-add form textarea
+{
+  background-color: unset;
+  color: white;
+}
+
+#trick-add form input:focus { outline-style: none; }
+
+#trick-add form label {
+  color: white;
+  font-weight: lighter;
+}
+
+#trick-add form textarea { height: 150px; }
+
+#add-trick-image,
+#add-trick-video { cursor: pointer; }
