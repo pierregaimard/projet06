@@ -41,6 +41,7 @@ class HomeController extends AbstractController
         
         foreach ($tricks as $trick) {
             $data[] = $this->renderView('home/_trick_card.html.twig', [
+                'id' => $trick->getId(),
                 'view' => $this->generateUrl('home'),
                 'imageName' => $trick->getHeadingImage()->getFileName(),
                 'category' => $trick->getCategory()->getName(),
