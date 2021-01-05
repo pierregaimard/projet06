@@ -1,6 +1,6 @@
 import "../styles/home.scss";
 import * as List from "list.js";
-import {trickDeleteListener} from './trickDeleteListener';
+import {trickDeleteListener} from "./trickDeleteListener";
 
 // Display tricks button
 let button = document.getElementById("app-tricks-button");
