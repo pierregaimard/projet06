@@ -3,6 +3,7 @@
         {%
             include 'home/_trick_card.html.twig'
             with {
+                'id': trick.id,
                 'view': path('home'),
                 'imageName': trick.headingImage.fileName,
                 'category': trick.category.name,
