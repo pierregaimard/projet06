@@ -1,6 +1,6 @@
 import "../styles/home.scss";
 import * as List from "list.js";
-import {TrickDeleteListener} from './TrickDeleteListener';
+import {trickDeleteListener} from './trickDeleteListener';
 
 // Display tricks button
 let button = document.getElementById("app-tricks-button");
@@ -34,7 +34,7 @@ loadMore.addEventListener("click", function () {
             for (let card of result.data) {
                 tricksDiv.innerHTML += card;
             }
-            TrickDeleteListener();
+            trickDeleteListener();
             let offset = String(Number(loadMore.dataset.offset) + nbCardsToLoad);
             loadMore.setAttribute("data-offset", offset);
 
@@ -49,4 +49,4 @@ loadMore.addEventListener("click", function () {
         });
 });
 
-TrickDeleteListener();
+trickDeleteListener();
