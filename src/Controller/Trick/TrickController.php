@@ -50,7 +50,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/trick/add/checkName", name="trick_add_name_check")
+     * @Route("/tricks/add/checkName", name="trick_add_name_check")
      *
      * @param Request $request
      *
@@ -69,5 +69,38 @@ class TrickController extends AbstractController
             'unique' => !$trick instanceof Trick,
             'value' => $name,
         ]);
+    }
+
+    /**
+     * @Route("/tricks/remove/{id}", name="trick_remove")
+     *
+     * @param                     $id
+     * @param NotificationManager $notification
+     *
+     * @return Response
+     */
+    public function remove($id, NotificationManager $notification): Response
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $trick = $manager->getRepository(Trick::class)->find($id);
+
+        foreach ($trick->getImages() as $image) {
+            $manager->remove($image);
+        }
+        foreach ($trick->getVideos() as $video) {
+            $manager->remove($video);
+        }
+        $manager->flush();
+
+        $manager->remove($trick);
+        $manager->flush();
+
+        $notification->add(new Notification(
+            '<b>' . $trick->getName() . '</b> trick has been removed successfully!',
+            Notification::TYPE_SUCCESS
+        ));
+        $notification->dispatch();
+
+        return $this->redirectToRoute('home', ['_fragment' => 'app-tricks-section']);
     }
 }
