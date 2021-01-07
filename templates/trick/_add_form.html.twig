@@ -32,7 +32,7 @@
             Add a video embed tag
         </div>
     </div>
-    <div id="trick_videos">
+    <div id="trick_videos" data-validation="{{ path('trick_add_tag_check') }}">
         {% for video in form.videos %}
             {% if loop.first == true %}
                 {% include 'form/_input.html.twig' with {'formElm': video.tag, 'label': false, 'width': 'w-75'} %}
