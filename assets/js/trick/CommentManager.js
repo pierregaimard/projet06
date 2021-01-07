@@ -1,6 +1,6 @@
 import {CommentBuilder} from "./CommentBuilder";
 
-class CommentManager {
+export class CommentManager {
     constructor(commentsContainer, loadMoreButton, limit, loadRoute, deleteRoute)
     {
         this.commentsContainer = commentsContainer;
@@ -58,7 +58,7 @@ class CommentManager {
         })
             .then((response) => response.json())
             .then((result) => {
-                this._displayLoadMore(result.loadMore)
+                this._displayLoadMore(result.loadMore);
                 for (let comment of result.comments) {
                     this.commentsContainer.append(this._getCommentElement(comment));
                 }
@@ -94,8 +94,6 @@ class CommentManager {
     getMoreComments()
     {
         this.offset += this.limit;
-        this._fetchComments()
+        this._fetchComments();
     }
 }
-
-export {CommentManager};
