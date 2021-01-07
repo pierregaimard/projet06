@@ -60,7 +60,7 @@ class TrickVideoFixtures extends Fixture implements DependentFixtureInterface
                 self::TAGS => ['LWUfrwCofuA', '4IVdWdvsrVA', 'K-RKP3BizWM', 'LUyoIf2pXLA']
             ],
             [
-                self::TRICK_REF => TrickFixtures::GRABS_MUTE,
+                self::TRICK_REF => TrickFixtures::TWEAKS_TWEAK,
                 self::TAGS => ['VX7e1LTuRqE', 'O3VphBHy7B4', 'N2335teLIBY', 'Zc8Gu8FwZkQ', 'FXGxvgid-X0']
             ],
         ];
