@@ -6,6 +6,7 @@ use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Service\Notification\Notification;
 use App\Service\Notification\NotificationManager;
+use App\Service\Trick\Video\TrickVideoTagManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class TrickController extends AbstractController
 {
-
     /**
      * @Route("/tricks/add", name="trick_add")
      * @IsGranted("ROLE_USER")
@@ -69,6 +69,21 @@ class TrickController extends AbstractController
             'unique' => !$trick instanceof Trick,
             'value' => $name,
         ]);
+    }
+
+    /**
+     * @Route("/tricks/add/checkTag", name="trick_add_tag_check")
+     *
+     * @param Request              $request
+     * @param TrickVideoTagManager $tagManager
+     *
+     * @return JsonResponse
+     */
+    public function checkVideoTag(Request $request, TrickVideoTagManager $tagManager): JsonResponse
+    {
+        $result = $tagManager->isValid($request->request->get('tag'));
+
+        return new JsonResponse(['valid' => $result]);
     }
 
     /**
