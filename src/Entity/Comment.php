@@ -39,6 +39,11 @@ class Comment
      */
     private $trick;
 
+    public function __construct()
+    {
+        $this->creationTime = new \DateTime('NOW');
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -1,0 +1,33 @@
+{% for video in trick.videos %}
+    <div class="col trick-view-media-container">
+        <div class="card bg-dark border-1 border-light">
+            <a class="media position-relative overflow-hidden" href="#">
+                <iframe
+                    class="overflow-hidden position-absolute top-0 start-0"
+                    type="text/html"
+                    src="{{ video.tag }}"
+                    width="100%"
+                    height="100%"
+                    allowfullscreen
+                    allow="autoplay; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                >
+                </iframe>
+            </a>
+            {% if app.user is null %}
+                <div class="card-body text-light p-4">
+                    <div class="text-end">
+                        <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
+                        <button
+                                type="button"
+                                class="btn btn-outline-light delete-trick-button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#delete-trick-modal"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}

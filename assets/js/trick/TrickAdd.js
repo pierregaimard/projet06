@@ -1,4 +1,6 @@
-class TrickAdd {
+import {TrickVideoManager} from "./TrickVideoManager";
+
+export class TrickAdd {
     static typeImage = "images";
     static typeVideo = "videos";
 
@@ -56,12 +58,13 @@ class TrickAdd {
         return fileTemplate;
     }
 
-    static getTextTemplate(id, name, required)
+    static getTagTemplate(id, name, required)
     {
-        const fileTemplate = this.getInputTemplate(id, name, required);
-        fileTemplate.setAttribute("type", "text");
+        const tagTemplate = this.getInputTemplate(id, name, required);
+        tagTemplate.setAttribute("type", "text");
+        TrickVideoManager.addListener(tagTemplate, this.getValidationTemplate("This tag is not valid."));
 
-        return fileTemplate;
+        return tagTemplate;
     }
 
     static getRemoveButtonTemplate()
@@ -104,7 +107,7 @@ class TrickAdd {
             case this.typeVideo:
                 id = `trick_${type}_${counter}_tag`;
                 name = `trick[${type}][${counter}][tag]`;
-                inputTemplate = this.getTextTemplate(id, name, required);
+                inputTemplate = this.getTagTemplate(id, name, required);
                 break;
         }
 
@@ -119,5 +122,3 @@ class TrickAdd {
         return globalContainer;
     }
 }
-
-export { TrickAdd };

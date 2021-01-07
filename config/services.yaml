@@ -6,9 +6,10 @@
 parameters:
     app.project_dir: '%kernel.project_dir%'
     app.server_account_img_dir: '%kernel.project_dir%/public/account_images/'
-    app.public_account_img_dir: 'account_images/'
+    app.public_account_img_dir: '/account_images/'
     app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
-    app.public_trick_img_dir: 'tricks_images/'
+    app.public_trick_img_dir: '/tricks_images/'
+    app.trick_comment_load_limit: 5
 
 services:
     # default configuration for services in *this* file
@@ -57,6 +58,17 @@ services:
                 event: 'postRemove'
                 entity: 'App\Entity\TrickImage'
 
+    App\EventListener\TrickVideoListener:
+        tags:
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'prePersist'
+                entity: 'App\Entity\TrickVideo'
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\TrickVideo'
+
     App\EventListener\TrickListener:
         tags:
             -
@@ -78,8 +90,14 @@ services:
         arguments:
             $lifetime: '%env(EMAIL_VALIDATION_LIFETIME)%'
 
+    # Trick images manager service
     App\Service\Trick\Image\TrickImageManager:
         arguments:
             $imgServerDir: '%app.server_trick_img_dir%'
             $width: 1180
             $resolution: 100
+
+    # Trick comments controller
+    App\Controller\Trick\TrickCommentController:
+        arguments:
+            $commentsLimit: '%app.trick_comment_load_limit%'

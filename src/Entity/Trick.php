@@ -75,6 +75,12 @@ class Trick
      */
     private $videos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -292,5 +298,17 @@ class Trick
         $image->setFileName('generic_image');
 
         return $image;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

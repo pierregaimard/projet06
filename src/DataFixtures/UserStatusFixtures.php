@@ -19,6 +19,7 @@ class UserStatusFixtures extends Fixture
         $active = new UserStatus();
         $active->setStatus(UserStatus::STATUS_ACTIVE);
         $manager->persist($active);
+        $this->addReference(UserStatus::STATUS_ACTIVE, $active);
 
         $manager->flush();
     }

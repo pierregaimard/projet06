@@ -1,0 +1,19 @@
+<section id="trick-view-heading-section" class="position-relative overflow-hidden">
+    <img
+            class="position-absolute top-50 start-50 translate-middle"
+            src="{{ trick_images_dir ~ trick.headingImage.fileName }}"
+            alt="{{ trick.name }} figure picture"
+    >
+    <div class="position-absolute top-50 start-0 translate-middle-y">
+        <h1 class="m-0">
+                    <span class="display-1 px-3 pb-1 fw-lighter bg-dark snow">
+                        [<b class="fw-bolder">{{ trick.category.name }}</b>]
+                    </span>
+        </h1>
+        <h2 class="m-0">
+                    <span class="display-1 px-3 fw-lighter bg-dark text-light">
+                        {{ trick.name }}
+                    </span>
+        </h2>
+    </div>
+</section>
