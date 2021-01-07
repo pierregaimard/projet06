@@ -95,3 +95,8 @@ services:
             $imgServerDir: '%app.server_trick_img_dir%'
             $width: 1180
             $resolution: 100
+
+    # Trick comments controller
+    App\Controller\Trick\TrickCommentController:
+        arguments:
+            $commentsLimit: '%app.trick_comment_load_limit%'
