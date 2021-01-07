@@ -57,6 +57,17 @@ services:
                 event: 'postRemove'
                 entity: 'App\Entity\TrickImage'
 
+    App\EventListener\TrickVideoListener:
+        tags:
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'prePersist'
+                entity: 'App\Entity\TrickVideo'
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'preUpdate'
+                entity: 'App\Entity\TrickVideo'
+
     App\EventListener\TrickListener:
         tags:
             -
