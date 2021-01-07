@@ -1,0 +1,21 @@
+<section id="trick-comments" class="mt-5 text-light">
+    <h2 class="mb-4 text-center fw-lighter display-4">
+        com<span class="snow">Men</span>TS...
+    </h2>
+    {% if app.user %}
+        <p class="text-center">
+            {% include 'trick/_view_comment_form.html.twig' %}
+        </p>
+    {% endif %}
+    <p
+            id="trick-comments-container"
+            data-route-load="{{ path('trick_view_comments', {'idTrick': trick.id}) }}"
+            data-route-delete="{{ path('trick_comment_delete', {'idTrick': trick.id}) }}"
+    >
+    </p>
+    <p class="text-center">
+        <button id="load-more-comments" class="btn btn-sm btn-outline-info" data-limit="{{ comments_limit }}">
+            Load more...
+        </button>
+    </p>
+</section>
