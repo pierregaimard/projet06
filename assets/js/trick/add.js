@@ -66,7 +66,7 @@ trickName.addEventListener("keyup", () => {
             }
             if (result.unique === true) {
                 trickName.classList.remove("is-invalid");
-                trickName.removeAttribute("pattern");
+                trickName.setAttribute("pattern", "^[a-zA-Z0-9]+([ -]?[a-zA-Z0-9])*$");
                 message.style.display = "none";
             }
         });
