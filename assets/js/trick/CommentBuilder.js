@@ -1,4 +1,4 @@
-class CommentBuilder {
+export class CommentBuilder {
     // Global comment container
     static getGlobalContainer()
     {
@@ -78,5 +78,3 @@ class CommentBuilder {
         return buttonContainer;
     }
 }
-
-export {CommentBuilder};
