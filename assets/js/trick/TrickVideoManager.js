@@ -1,4 +1,4 @@
-class TrickVideoManager {
+export class TrickVideoManager {
     static addListener(input, message)
     {
         input.addEventListener("change", () => {
@@ -26,5 +26,3 @@ class TrickVideoManager {
         });
     }
 }
-
-export { TrickVideoManager };
