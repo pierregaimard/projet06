@@ -1,0 +1,18 @@
+<section id="description-background" class="bg-snow">
+    <div id="description-area" class="bg-light shadow">
+        <h2 class="mb-4 text-center display-4">
+                    <span class="trick-view-dash-heading border-dark ps-2 pe-5 rounded-3">
+                        deSCriptION
+                    </span>
+        </h2>
+        <p>{{ trick.description }}</p>
+        <p class="text-center">
+            <span class="badge bg-dark snow">{{ trick.category.name }}</span>
+            <span class="badge bg-dark">cReaTIon:{{ trick.creationTime.format('Y:m:d') }}</span>
+            {% if trick.lastUpdateTime is not null %}
+                <span class="badge bg-dark">laSt UpdATe:{{ trick.lastUpdateTime.format('Y:m:d') }}</span>
+            {% endif %}
+            <span class="badge bg-dark">auThor:{{ trick.author.firstName|capitalize }}</span>
+        </p>
+    </div>
+</section>
