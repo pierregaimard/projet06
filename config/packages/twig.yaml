@@ -3,3 +3,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
+    globals:
+        trick_images_dir: '%app.public_trick_img_dir%'
+        account_images_dir: '%app.public_account_img_dir%'
+        comments_limit: '%app.trick_comment_load_limit%'
