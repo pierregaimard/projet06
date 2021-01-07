@@ -1,6 +1,6 @@
-import {TrickVideoManager} from './TrickVideoManager';
+import {TrickVideoManager} from "./TrickVideoManager";
 
-class TrickAdd {
+export class TrickAdd {
     static typeImage = "images";
     static typeVideo = "videos";
 
@@ -122,5 +122,3 @@ class TrickAdd {
         return globalContainer;
     }
 }
-
-export { TrickAdd };
