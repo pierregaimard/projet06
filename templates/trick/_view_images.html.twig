@@ -1,0 +1,35 @@
+{% for image in trick.images %}
+    <div class="col trick-view-media-container">
+        <div class="card bg-dark border-1 border-light">
+            <a
+                href="#"
+                id="trick-view-image-modal-button"
+                class="media position-relative overflow-hidden"
+                data-bs-toggle="modal"
+                data-bs-target="#trick-view-image-modal"
+                data-image="{{ trick_images_dir ~ image.fileName }}"
+            >
+                <img
+                    src="{{ trick_images_dir ~ image.fileName }}"
+                    class="card-img-top position-absolute top-50 start-50 translate-middle"
+                    alt="{{ trick.category.name ~ ' ' ~ trick.name }}"
+                >
+            </a>
+            {% if app.user is null %}
+                <div class="card-body text-light p-4">
+                    <div class="text-end">
+                        <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
+                        <button
+                                type="button"
+                                class="btn btn-outline-light delete-trick-button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#delete-trick-modal"
+                        >
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
