@@ -90,6 +90,7 @@ services:
         arguments:
             $lifetime: '%env(EMAIL_VALIDATION_LIFETIME)%'
 
+    # Trick images manager service
     App\Service\Trick\Image\TrickImageManager:
         arguments:
             $imgServerDir: '%app.server_trick_img_dir%'
