@@ -110,6 +110,7 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
                 ]
             ));
             $$name->setCategory($this->getReference($item[self::KEY_CATEGORY]));
+            $$name->setAuthor($this->getReference(UserFixture::REFERENCE));
             $manager->persist($$name);
             $this->addReference($item[self::KEY_OBJECT], $$name);
         }
@@ -120,7 +121,8 @@ class TrickFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            CategoryFixtures::class
+            CategoryFixtures::class,
+            UserFixture::class,
         ];
     }
 }
