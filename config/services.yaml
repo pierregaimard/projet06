@@ -9,6 +9,7 @@ parameters:
     app.public_account_img_dir: '/account_images/'
     app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
     app.public_trick_img_dir: '/tricks_images/'
+    app.trick_comment_load_limit: 5
 
 services:
     # default configuration for services in *this* file
