@@ -27,9 +27,15 @@
 
 .trick-view-dash-heading { border: 1px dashed white; }
 
+#trick-view-image-modal img {
+  max-width: 100%;
+  max-height: 700px;
+  margin: auto;
+}
+
 #trick-view .trick-view-media-container .media {
-  padding-bottom:56.25%;
-  height:0;
+  padding-bottom: 56.25%;
+  height: 0;
 }
 
 #trick-view .trick-view-media-container .media iframe {
@@ -57,12 +63,6 @@
   transform: rotate(-3deg);
   border-radius: 30px;
   padding: 40px 40px 30px 40px;
-}
-
-#trick-view-image-modal img {
-  max-width: 100%;
-  max-height: 700px;
-  margin: auto;
 }
 
 #trick-comments h2 { margin-top: 100px; }
