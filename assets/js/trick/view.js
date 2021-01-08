@@ -1,5 +1,6 @@
 import "../../styles/trick/view.scss";
 import {CommentManager} from "./CommentManager";
+import {trickDeleteListener} from "../trickDeleteListener";
 
 // Display image modal in media section.
 const imgButtons = document.querySelectorAll("#trick-view-image-modal-button");
@@ -26,3 +27,5 @@ window.addEventListener("DOMContentLoaded", () => {
 loadMore.addEventListener("click", () => {
     commentManager.getMoreComments();
 });
+
+trickDeleteListener();
