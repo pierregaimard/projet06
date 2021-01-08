@@ -23,10 +23,10 @@ class UserFixture extends Fixture implements DependentFixtureInterface
         $user->setStatus($this->getReference(UserStatus::STATUS_ACTIVE));
         $user->setRoles([User::ROLE_USER]);
 
-        $this->addReference(self::REFERENCE, $user);
-
         $manager->persist($user);
         $manager->flush();
+
+        $this->addReference(self::REFERENCE, $user);
     }
 
     public function getDependencies(): array
