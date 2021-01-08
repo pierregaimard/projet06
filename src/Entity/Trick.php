@@ -295,7 +295,7 @@ class Trick
     private function getGenericHeadingImage(): TrickImage
     {
         $image = new TrickImage();
-        $image->setFileName('generic_image');
+        $image->setFileName('generic_image.jpg');
 
         return $image;
     }
