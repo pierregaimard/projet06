@@ -91,7 +91,9 @@ class TrickImageManager
      */
     private function getFileName(TrickImage $image): string
     {
-        return $image->getId() . '.jpeg';
+        $category = str_replace(' ', '-', strtolower($image->getTrick()->getCategory()->getName()));
+
+        return $category . '-' . $image->getTrick()->getSlug() . '-' . $image->getId() . '.jpeg';
     }
 
     /**
