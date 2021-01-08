@@ -6,6 +6,7 @@ use App\Entity\Trick;
 use App\Form\TrickHeadingImageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TrickEditController extends AbstractController
@@ -16,8 +17,11 @@ class TrickEditController extends AbstractController
      * @Route("/tricks/edit/{slug}", name="trick_edit")
      *
      * @param $slug
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function edit($slug, Request $request)
+    public function edit($slug, Request $request): Response
     {
         $manager = $this->getDoctrine()->getManager();
         $trick = $manager->getRepository(Trick::class)->findOneBy(['slug' => $slug]);
@@ -43,8 +47,12 @@ class TrickEditController extends AbstractController
 
     /**
      * @Route("/tricks/update/remove-heading-image/{id}", name="trick_remove_heading_image")
+     *
+     * @param $id
+     *
+     * @return Response
      */
-    public function removeHeadingImage($id)
+    public function removeHeadingImage($id): Response
     {
         $manager = $this->getDoctrine()->getManager();
         $trick   = $manager->getRepository(Trick::class)->find($id);
