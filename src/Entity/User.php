@@ -278,4 +278,12 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return  $this->getStatus()->getStatus() === UserStatus::STATUS_ACTIVE;
+    }
 }
