@@ -15,7 +15,7 @@
                     alt="{{ trick.category.name ~ ' ' ~ trick.name }}"
                 >
             </a>
-            {% if app.user is null %}
+            {% if app.user is not null %}
                 <div class="card-body text-light p-4">
                     <div class="text-end">
                         <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
