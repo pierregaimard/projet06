@@ -40,15 +40,17 @@
                             <input type="search" class="form-control form-control-lg fw-light col-6 search" placeholder="seARcH">
                         </form>
                     </div>
-                    <div>
-                        <a href="{{ path('trick_add') }}">
-                            <img
-                                id="app-add-trick"
-                                src="{{ asset('build/images/app-icon-plus.svg') }}"
-                                alt="add a trick" width="60"
-                            >
-                        </a>
-                    </div>
+                    {% if app.user is not null and app.user.active %}
+                        <div>
+                            <a href="{{ path('trick_add') }}">
+                                <img
+                                    id="app-add-trick"
+                                    src="{{ asset('build/images/app-icon-plus.svg') }}"
+                                    alt="add a trick" width="60"
+                                >
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div id="app-tricks-cards" class="tricks-cards">
