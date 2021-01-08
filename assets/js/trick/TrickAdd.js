@@ -82,13 +82,11 @@ export class TrickAdd {
 
     static setRemoveButton(globalContainer, counter, id)
     {
-        if (counter > 1) {
-            let button = this.getRemoveButtonTemplate(id);
-            button.addEventListener("click", () => {
-                globalContainer.remove();
-            });
-            globalContainer.append(button);
-        }
+        let button = this.getRemoveButtonTemplate(id);
+        button.addEventListener("click", () => {
+            globalContainer.remove();
+        });
+        globalContainer.append(button);
     }
 
     static getField(counter, type, required = false)
