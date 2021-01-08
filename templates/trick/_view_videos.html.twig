@@ -13,7 +13,11 @@
                 >
                 </iframe>
             </a>
-            {% if app.user is not null %}
+            {% if
+                app.user is not null
+                and app.user.active
+                and action == constant('App\\Controller\\Trick\\TrickEditController::ACTION')
+            %}
                 <div class="card-body text-light p-4">
                     <div class="text-end">
                         <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
