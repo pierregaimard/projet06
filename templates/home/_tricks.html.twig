@@ -9,7 +9,7 @@
                 'category': trick.category.name,
                 'name': trick.name,
                 'description': trick.shortDescription,
-                'edit': path('home'),
+                'edit': path('trick_edit', {'slug': trick.slug}),
                 'remove': path('home')
             }
         %}
