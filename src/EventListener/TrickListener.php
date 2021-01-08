@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Entity\Trick;
+use App\Entity\User;
 use App\Service\Trick\Slug\TrickSlugManager;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Security;
@@ -39,7 +40,9 @@ class TrickListener
         $this->slugManager->setSlug($trick);
 
         # Set trick author
-        $trick->setAuthor($this->security->getUser());
+        if (!$trick->getAuthor() instanceof User) {
+            $trick->setAuthor($this->security->getUser());
+        }
     }
 
     /**
