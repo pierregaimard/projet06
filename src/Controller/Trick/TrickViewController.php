@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TrickViewController extends AbstractController
 {
+    public const ACTION = 'view';
+
     /**
      * @Route("/tricks/view/{slug}", name="trick_view")
      *
@@ -58,7 +60,8 @@ class TrickViewController extends AbstractController
             'trick/view.html.twig',
             [
                 'trick' => $trick,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'action' => self::ACTION
             ]
         );
     }
