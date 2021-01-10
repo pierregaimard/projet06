@@ -15,8 +15,6 @@ use Exception;
 
 class TrickEditController extends AbstractController
 {
-    public const ACTION = 'edit';
-
     /**
      * @Route("/tricks/edit/{slug}", name="trick_edit")
      *
@@ -63,7 +61,7 @@ class TrickEditController extends AbstractController
             'trick/edit.html.twig',
             [
                 'trick' => $trick,
-                'action' => self::ACTION,
+                'edit' => true,
                 'headingForm' => $headingFormView,
                 'infoForm' => $infoForm->createView(),
             ]
