@@ -82,3 +82,26 @@
 #app-form label { color: white; }
 
 #trick-comments .comment-container { border-bottom: 1px solid #414141; }
+
+// Form
+#trick-view-info form {
+  input,
+  textarea,
+  select {
+    background-color: unset;
+    color: white;
+  }
+
+  textarea {
+    height: 150px;
+    resize: none;
+  }
+
+  input:focus { outline-style: none; }
+
+  label {
+    color: white;
+    font-weight: lighter;
+  }
+}
+
