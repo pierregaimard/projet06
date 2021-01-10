@@ -29,12 +29,22 @@
     {# Slim cintainer #}
     <div id="trick-view-info" class="container mt-5 mb-5">
 
+        {# Information form #}
+        {% include 'trick/_edit_section_information_form.html.twig' %}
 
+        <div class="text-center text-danger mt-5">
+            <h2 class="fw-lighter">Danger zone</h2>
+            <a href="{{ path('trick_remove', {'id': trick.id}) }}" class="btn btn-outline-danger w-100 mt-3">
+                Remove this trick
+            </a>
+        </div>
 
     </div>
 
     {# Modals #}
-    {% include 'trick/_edit_heading_change_modal.html.twig' %}
+    {% if headingForm is not null %}
+        {% include 'trick/_edit_heading_change_modal.html.twig' %}
+    {% endif %}
 
 {% endblock %}
 
