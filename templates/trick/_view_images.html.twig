@@ -25,9 +25,13 @@
                         <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
                         <button
                                 type="button"
-                                class="btn btn-outline-light delete-trick-button"
+                                class="btn btn-outline-light remove-media-button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete-trick-modal"
+                                data-bs-target="#remove-trick-media-modal"
+                                data-route="{{ path('trick_media_remove', {
+                                    'type':'App\\Entity\\TrickImage',
+                                    'id': image.id
+                                }) }}"
                         >
                             <i class="bi bi-trash"></i>
                         </button>
