@@ -16,7 +16,7 @@
             </span>
         </h2>
     </div>
-    {% if app.user is not null and app.user.active %}
+    {% if app.user is not null and app.user.active and headingForm is not null%}
         <div class="position-absolute end-0 top-0 m-4 p-2 bg-light rounded-3 shadow">
             <button
                 type="button"
