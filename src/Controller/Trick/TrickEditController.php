@@ -21,6 +21,7 @@ class TrickEditController extends AbstractController
      *
      * @param $slug
      * @param Request $request
+     * @param NotificationManager $notification
      *
      * @return Response
      */
@@ -39,7 +40,6 @@ class TrickEditController extends AbstractController
             if ($headingForm->isSubmitted() && $headingForm->isValid()) {
                 $manager->flush();
             }
-
             $headingFormView = $headingForm->createView();
         }
 
