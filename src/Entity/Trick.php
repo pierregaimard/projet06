@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
  * @UniqueEntity("name", message="This trick name already exists", groups={"update"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Trick
 {
@@ -312,5 +313,13 @@ class Trick
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedTime()
+    {
+        $this->setLastUpdateTime(new \DateTime('NOW'));
     }
 }
