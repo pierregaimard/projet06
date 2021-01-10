@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('trick_view') }}
+    {{ encore_entry_link_tags('trick_edit') }}
 {% endblock %}
 
 {% block body %}
@@ -44,11 +44,12 @@
     {# Modals #}
     {% if headingForm is not null %}
         {% include 'trick/_edit_heading_change_modal.html.twig' %}
+        {% include 'trick/_edit_remove_media_modal.html.twig' %}
     {% endif %}
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('trick_view') }}
+    {{ encore_entry_script_tags('trick_edit') }}
 {% endblock %}
