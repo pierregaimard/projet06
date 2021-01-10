@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 class TrickEditController extends AbstractController
 {
@@ -84,5 +85,34 @@ class TrickEditController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('trick_edit', ['slug' => $trick->getSlug()]);
+    }
+
+    /**
+     * @Route("tricks/update/remove-media/{type}/{id}", name="trick_media_remove")
+     *
+     * @param $type
+     * @param $id
+     *
+     * @return Response
+     *
+     * @throws Exception
+     */
+    public function removeMedia($type, $id, NotificationManager $notification)
+    {
+        if (!class_exists($type)) {
+            throw new Exception('This entity class do not exists');
+        }
+        $manager = $this->getDoctrine()->getManager();
+        $media = $manager->getRepository($type)->find($id);
+        $manager->remove($media);
+        $manager->flush();
+
+        $notification->add(new Notification(
+            'The media has been removed successfully!',
+            Notification::TYPE_SUCCESS,
+        ));
+        $notification->dispatch();
+
+        return $this->redirectToRoute('trick_edit', ['slug' => $media->getTrick()->getSlug()]);
     }
 }
