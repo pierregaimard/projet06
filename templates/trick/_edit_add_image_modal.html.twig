@@ -1,0 +1,38 @@
+<div
+    class="modal fade"
+    id="add-trick-image-modal"
+    tabindex="-1"
+    aria-labelledby="trickEditImageAddModal"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="trickEditImageAddModal"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{ form_start(imageForm,
+                {
+                    method: 'POST',
+                    'attr': {'id': 'app-form', 'class': 'needs-validation', 'novalidate': 'novalidate'
+                }
+            }) }}
+                <div class="modal-body">
+                    {% include 'form/_input_front.html.twig' with {
+                        'formElm': imageForm.uploadedFile,
+                        'noLabel': true
+                    } %}
+                    <input id="idImage" type="hidden" name="idImage" value="">
+                    {{ form_rest(imageForm) }}
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button id="submit-image" type="submit" class="btn btn-sm btn-outline-info">
+                    </button>
+                </div>
+            {{ form_end(imageForm) }}
+        </div>
+    </div>
+</div>
