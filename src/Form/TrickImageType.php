@@ -17,7 +17,8 @@ class TrickImageType extends AbstractType
         $builder
             ->add('uploadedFile', FileType::class, [
                 'data_class' => UploadedFile::class,
-                'auto_initialize' => true
+                'auto_initialize' => true,
+                'attr' => ['accept' => 'image/jpeg']
             ])
         ;
     }
