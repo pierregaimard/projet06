@@ -1,0 +1,38 @@
+<div
+    class="modal fade"
+    id="add-trick-video-modal"
+    tabindex="-1"
+    aria-labelledby="trickEditVideoAddModal"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="trickEditVideoAddModal">
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <span id="trick_videos" data-validation="{{ path('trick_add_tag_check') }}"></span>
+            {{ form_start(videoForm,
+                {
+                    method: 'POST',
+                    'attr': {'id': 'app-form-2', 'class': 'needs-validation', 'novalidate': 'novalidate'
+                }
+            }) }}
+                <div class="modal-body text-dark">
+                    {% include 'form/_input.html.twig' with {'formElm': videoForm.tag} %}
+                    <input id="idVideo" type="hidden" name="idVideo" value="">
+                    {{ form_rest(videoForm) }}
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button id="submit-video" type="submit" class="btn btn-sm btn-outline-info">
+                    </button>
+                </div>
+            {{ form_end(videoForm) }}
+        </div>
+    </div>
+</div>
