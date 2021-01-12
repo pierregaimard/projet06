@@ -1,6 +1,7 @@
 import "../../styles/trick/view.scss";
 import {CommentManager} from "./CommentManager";
 import {trickDeleteListener} from "../trickDeleteListener";
+import {MediaBlockManager} from "./MediaBlockManager";
 
 // Display image modal in media section.
 const imgButtons = document.querySelectorAll("#trick-view-image-modal-button");
@@ -29,3 +30,8 @@ loadMore.addEventListener("click", () => {
 });
 
 trickDeleteListener();
+
+// Media display management on mobile devices
+const mediaButton = document.getElementById("app-section-media-button");
+const mediaSection = document.getElementById("app-section-media");
+MediaBlockManager.manage(mediaButton, mediaSection);
