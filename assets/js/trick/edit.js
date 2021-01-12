@@ -1,6 +1,7 @@
 import "../../styles/trick/view.scss";
 import {TrickAdd} from "./TrickAdd";
 import {TrickVideoManager} from "./TrickVideoManager";
+import {MediaBlockManager} from "./MediaBlockManager";
 
 // Remove media listener
 const removeMediaValidation = document.getElementById("media-remove-submit");
@@ -68,3 +69,8 @@ form.addEventListener("submit", function (event) {
             }
         });
 }, false);
+
+// Media display management on mobile devices
+const mediaButton = document.getElementById("app-section-media-button");
+const mediaSection = document.getElementById("app-section-media");
+MediaBlockManager.manage(mediaButton, mediaSection);
