@@ -57,7 +57,7 @@ addVideoButton.addEventListener("click", () => {
 const form = document.getElementById("app-form-2");
 const tagInput = document.getElementById("trick_video_tag");
 const invalidMassage = TrickAdd.getValidationTemplate("This tag is not valid");
-const checkTagRoute = document.getElementById("trick_videos").dataset.validation
+const checkTagRoute = document.getElementById("trick_videos").dataset.validation;
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     TrickVideoManager.checkValidity(tagInput, invalidMassage, checkTagRoute)
