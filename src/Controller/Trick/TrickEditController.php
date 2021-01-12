@@ -4,9 +4,11 @@ namespace App\Controller\Trick;
 
 use App\Entity\Trick;
 use App\Entity\TrickImage;
+use App\Entity\TrickVideo;
 use App\Form\TrickEditType;
 use App\Form\TrickHeadingImageType;
 use App\Form\TrickImageType;
+use App\Form\TrickVideoType;
 use App\Service\Notification\Notification;
 use App\Service\Notification\NotificationManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,7 +16,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Exception;
 
 class TrickEditController extends AbstractController
 {
@@ -63,7 +64,16 @@ class TrickEditController extends AbstractController
         # ImageForm
         $image = new TrickImage();
         $imageForm = $this->createForm(TrickImageType::class, $image);
-        $this->manageImageForm($image, $imageForm, $request, $trick, $notification);
+        if ($this->manageImageForm($image, $imageForm, $request, $trick, $notification)) {
+            return $this->redirectToRoute('trick_edit', ['slug' => $trick->getSlug()]);
+        }
+
+        # Video form
+        $video = new TrickVideo();
+        $videoForm = $this->createForm(TrickVideoType::class, $video);
+        if ($this->manageVideoForm($video, $videoForm, $request, $trick, $notification)) {
+            return $this->redirectToRoute('trick_edit', ['slug' => $trick->getSlug()]);
+        }
 
         return $this->render(
             'trick/edit.html.twig',
@@ -73,6 +83,7 @@ class TrickEditController extends AbstractController
                 'headingForm' => $headingFormView,
                 'infoForm' => $infoForm->createView(),
                 'imageForm' => $imageForm->createView(),
+                'videoForm' => $videoForm->createView(),
             ]
         );
     }
@@ -83,6 +94,8 @@ class TrickEditController extends AbstractController
      * @param Request             $request
      * @param Trick               $trick
      * @param NotificationManager $notification
+     *
+     * @return bool
      */
     private function manageImageForm(
         TrickImage $image,
@@ -90,7 +103,7 @@ class TrickEditController extends AbstractController
         Request $request,
         Trick $trick,
         NotificationManager $notification
-    ) {
+    ): bool {
         $manager = $this->getDoctrine()->getManager();
 
         $imageForm->handleRequest($request);
@@ -110,11 +123,57 @@ class TrickEditController extends AbstractController
             $manager->persist($image);
             $manager->flush();
 
-            $trick->addImage($image);
+            $notification->add(new Notification($message, Notification::TYPE_SUCCESS));
+            $notification->dispatch();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param TrickVideo          $video
+     * @param FormInterface       $videoForm
+     * @param Request             $request
+     * @param Trick               $trick
+     * @param NotificationManager $notification
+     *
+     * @return bool
+     */
+    private function manageVideoForm(
+        TrickVideo $video,
+        FormInterface $videoForm,
+        Request $request,
+        Trick $trick,
+        NotificationManager $notification
+    ): bool {
+        $manager = $this->getDoctrine()->getManager();
+        $videoForm->handleRequest($request);
+
+        if ($videoForm->isSubmitted() && $videoForm->isValid()) {
+            $idVideo = $request->request->get('idVideo');
+            $message = 'The video has been added successfully';
+
+            # If changes an existing image
+            if ($idVideo !== "") {
+                $tag = $video->getTag();
+                $video = $manager->getRepository(TrickVideo::class)->find($idVideo);
+                $video->setTag($tag);
+                $message = 'The video has been updated successfully';
+            }
+
+            $video->setTrick($trick);
+            $manager->persist($video);
+            $manager->flush();
 
             $notification->add(new Notification($message, Notification::TYPE_SUCCESS));
             $notification->dispatch();
+
+            return true;
         }
+
+        return false;
     }
 
     /**
@@ -142,14 +201,9 @@ class TrickEditController extends AbstractController
      * @param NotificationManager $notification
      *
      * @return Response
-     *
-     * @throws Exception
      */
     public function removeMedia($type, $id, NotificationManager $notification)
     {
-        if (!class_exists($type)) {
-            throw new Exception('This entity class do not exists');
-        }
         $manager = $this->getDoctrine()->getManager();
         $media = $manager->getRepository($type)->find($id);
         $manager->remove($media);
