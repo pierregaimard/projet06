@@ -62,7 +62,7 @@ export class TrickAdd {
     {
         const tagTemplate = this.getInputTemplate(id, name, required);
         tagTemplate.setAttribute("type", "text");
-        let checkTagRoute = document.getElementById("trick_videos").dataset.validation
+        let checkTagRoute = document.getElementById("trick_videos").dataset.validation;
         TrickVideoManager.addListener(tagTemplate, this.getValidationTemplate("This tag is not valid."), checkTagRoute);
 
         return tagTemplate;
