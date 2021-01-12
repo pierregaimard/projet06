@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TrickRepository::class)
+ * @UniqueEntity("name", message="This trick name already exists", groups={"update"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Trick
 {
@@ -100,7 +103,7 @@ class Trick
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -136,7 +139,7 @@ class Trick
         return $this->getDescription();
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -295,7 +298,7 @@ class Trick
     private function getGenericHeadingImage(): TrickImage
     {
         $image = new TrickImage();
-        $image->setFileName('generic_image');
+        $image->setFileName('generic_image.jpg');
 
         return $image;
     }
@@ -310,5 +313,13 @@ class Trick
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedTime()
+    {
+        $this->setLastUpdateTime(new \DateTime('NOW'));
     }
 }

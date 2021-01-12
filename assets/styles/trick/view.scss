@@ -33,6 +33,11 @@
   margin: auto;
 }
 
+#trick-view .trick-view-media-container .add-media {
+  min-height: 250px;
+  border-style: dashed;
+}
+
 #trick-view .trick-view-media-container .media {
   padding-bottom: 56.25%;
   height: 0;
@@ -67,7 +72,7 @@
 
 #trick-comments h2 { margin-top: 100px; }
 
-#app-form {
+#app-form.rotate {
   transform: rotate(-3deg);
   padding-bottom: 50px;
 }
@@ -82,3 +87,25 @@
 #app-form label { color: white; }
 
 #trick-comments .comment-container { border-bottom: 1px solid #414141; }
+
+// Form
+#trick-view-info form {
+  input,
+  textarea,
+  select {
+    background-color: unset;
+    color: white;
+  }
+
+  textarea {
+    height: 150px;
+    resize: none;
+  }
+
+  input:focus { outline-style: none; }
+
+  label {
+    color: white;
+    font-weight: lighter;
+  }
+}

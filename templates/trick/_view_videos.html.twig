@@ -1,7 +1,7 @@
 {% for video in trick.videos %}
     <div class="col trick-view-media-container">
         <div class="card bg-dark border-1 border-light">
-            <a class="media position-relative overflow-hidden" href="#">
+            <div class="media position-relative overflow-hidden">
                 <iframe
                     class="overflow-hidden position-absolute top-0 start-0"
                     type="text/html"
@@ -12,20 +12,28 @@
                     allow="autoplay; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 >
                 </iframe>
-            </a>
-            {% if
-                app.user is not null
-                and app.user.active
-                and action == constant('App\\Controller\\Trick\\TrickEditController::ACTION')
-            %}
+            </div>
+            {% if edit %}
                 <div class="card-body text-light p-4">
                     <div class="text-end">
-                        <a href="#" class="btn btn-outline-light"><i class="bi bi-pencil"></i></a>
                         <button
                                 type="button"
-                                class="btn btn-outline-light delete-trick-button"
+                                class="btn btn-outline-light change-video-button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#delete-trick-modal"
+                                data-bs-target="#add-trick-video-modal"
+                                data-id="{{ video.id }}"
+                        >
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-outline-light remove-media-button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#remove-trick-media-modal"
+                            data-route="{{ path('trick_media_remove', {
+                                'type':'App\\Entity\\TrickVideo',
+                                'id': video.id
+                            }) }}"
                         >
                             <i class="bi bi-trash"></i>
                         </button>

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('trick_edit') }}
+{% endblock %}
+
+{% block body %}
+
+    {# Large container #}
+    <div id="trick-view" class="container text-light">
+
+        {# Heading section #}
+        {% include "trick/_edit_section_heading.html.twig" %}
+
+        {# Medias section #}
+        <section class="mt-5">
+            <h2 class="mb-4 text-center fw-lighter display-4">
+                mEd<span class="snow">iA</span>S
+            </h2>
+            <div class="row m-1 m-lg-4 g-5 row-cols-1 row-cols-md-2 row-cols-lg-3 px-md-4 px-lg-5">
+                {% include 'trick/_view_images.html.twig' %}
+                {% include 'trick/_view_videos.html.twig' %}
+                {% if edit %}
+                    {% include 'trick/_edit_add_media_card.html.twig' with {
+                        'buttonText': 'Add a new video',
+                        'idModal': 'add-trick-image-modal'
+                    } %}
+                {% endif %}
+            </div>
+        </section>
+
+    </div>
+
+    {# Slim cintainer #}
+    <div id="trick-view-info" class="container mt-5 mb-5">
+
+        {# Information form #}
+        {% include 'trick/_edit_section_information_form.html.twig' %}
+
+        <div class="text-center text-danger mt-5">
+            <h2 class="fw-lighter">Danger zone</h2>
+            <a href="{{ path('trick_remove', {'id': trick.id}) }}" class="btn btn-outline-danger w-100 mt-3">
+                Remove this trick
+            </a>
+        </div>
+
+    </div>
+
+    {# Modals #}
+    {% if headingForm is not null %}
+        {% include 'trick/_edit_heading_change_modal.html.twig' %}
+        {% include 'trick/_edit_remove_media_modal.html.twig' %}
+        {% include 'trick/_edit_add_image_modal.html.twig' %}
+        {% include 'trick/_edit_add_video_modal.html.twig' %}
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('trick_edit') }}
+{% endblock %}

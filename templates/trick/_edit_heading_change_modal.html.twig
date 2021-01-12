@@ -1,0 +1,26 @@
+<div
+    class="modal fade"
+    id="trick-edit-heading-change-modal"
+    tabindex="-1"
+    aria-labelledby="trickEditHeadingChangeModal"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="trickEditHeadingChangeModal">Modify heading image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {{ form_start(headingForm, {'method': 'POST', 'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+                <div class="modal-body">
+                        {% include 'form/_input.html.twig' with {'formElm': headingForm.headingImage} %}
+                        {{ form_rest(headingForm) }}
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">Undo</button>
+                    <button type="submit" class="btn btn-sm btn-outline-info">Change heading image</button>
+                </div>
+            {{ form_end(headingForm) }}
+        </div>
+    </div>
+</div>

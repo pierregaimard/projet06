@@ -17,20 +17,6 @@ collection.forEach((element) => {
     });
 });
 
-// First image field initialization
-if (imageCount === 0) {
-    imageCount++;
-    let field = TrickAdd.getField(imageCount, TrickAdd.typeImage, true);
-    imageContainer.append(field);
-}
-
-// First video field initialization
-if (videoCount === 0) {
-    videoCount++;
-    let field = TrickAdd.getField(videoCount, TrickAdd.typeVideo, true);
-    videoContainer.append(field);
-}
-
 // Add Image event listener
 addImageButton.addEventListener("click", () => {
     imageCount++;
