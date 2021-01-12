@@ -47,7 +47,7 @@ class HomeController extends AbstractController
                 'category' => $trick->getCategory()->getName(),
                 'name' => $trick->getName(),
                 'description' => $trick->getShortDescription(),
-                'edit' => $this->generateUrl('home'),
+                'edit' => $this->generateUrl('trick_edit', ['slug' => $trick->getSlug()]),
                 'remove' => $this->generateUrl('home')
             ]);
         }
