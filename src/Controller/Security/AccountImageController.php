@@ -4,6 +4,7 @@ namespace App\Controller\Security;
 
 use App\Service\Account\AccountImageManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +27,17 @@ class AccountImageController extends AbstractController
         $file = new File($fileData);
 
         $user = $this->getUser();
-
-        $imageManager->save($file, $user);
+        try {
+            $imageManager->save($file, $user);
+        } catch (FileException $fileException) {
+            return new JsonResponse(['result' => $fileException->getMessage()]);
+        }
         $user->setPicture($imageManager->getFileName($user));
 
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($user);
         $manager->flush();
 
-        return new JsonResponse();
+        return new JsonResponse([]);
     }
 }
