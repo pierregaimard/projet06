@@ -9,7 +9,6 @@ parameters:
     app.public_account_img_dir: '/account_images/'
     app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
     app.public_trick_img_dir: '/tricks_images/'
-    app.email_validation_lifetime: 3600
 
 services:
     # default configuration for services in *this* file
@@ -88,11 +87,6 @@ services:
     App\Service\Security\EmailValidation\TokenManager:
         arguments:
             $secret: '%env(APP_SECRET)%'
-
-    # TimeManager service
-    App\Service\Security\EmailValidation\TimeManager:
-        arguments:
-            $lifetime: '%app.email_validation_lifetime%'
 
     # Trick images manager service
     App\Service\Trick\Image\TrickImageManager:
