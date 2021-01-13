@@ -1,6 +1,18 @@
 {
+    "name": "pierregaimard/projet06",
+    "description": "Php Symfony study project",
     "type": "project",
+    "readme": "README.md",
+    "time": "2021-01-01",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Pierre Gaimard",
+            "email": "pierre@gaimard-family.fr",
+            "homepage": "https://github.com/pierregaimard",
+            "role": "Developper"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-ctype": "*",
