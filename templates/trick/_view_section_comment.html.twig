@@ -16,7 +16,11 @@
     >
     </p>
     <p class="text-center">
-        <button id="load-more-comments" class="btn btn-sm btn-outline-info" data-limit="{{ comments_limit }}">
+        <button
+            id="load-more-comments"
+            class="btn btn-sm btn-outline-info"
+            data-limit="{{ constant('App\\Controller\\Trick\\TrickCommentController::COMMENTS_LIMIT') }}"
+        >
             Load more...
         </button>
     </p>

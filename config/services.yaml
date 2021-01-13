@@ -9,7 +9,6 @@ parameters:
     app.public_account_img_dir: '/account_images/'
     app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
     app.public_trick_img_dir: '/tricks_images/'
-    app.trick_comment_load_limit: 5
     app.email_validation_lifetime: 3600
 
 services:
@@ -101,11 +100,6 @@ services:
             $imgServerDir: '%app.server_trick_img_dir%'
             $width: 1180
             $resolution: 100
-
-    # Trick comments controller
-    App\Controller\Trick\TrickCommentController:
-        arguments:
-            $commentsLimit: '%app.trick_comment_load_limit%'
 
     # Account image manager
     App\Service\Account\AccountImageManager:
