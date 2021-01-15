@@ -10,6 +10,9 @@ class TrickSlugManagerTest extends TestCase
 {
     /**
      * @dataProvider nameProvider
+     *
+     * @param $base
+     * @param $expected
      */
     public function testSetSlug($base, $expected)
     {
