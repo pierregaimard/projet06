@@ -7,15 +7,7 @@ class TimeManager
     /**
      * @var int
      */
-    private int $lifetime;
-
-    /**
-     * @param $lifetime
-     */
-    public function __construct($lifetime)
-    {
-        $this->lifetime = (int)$lifetime;
-    }
+    private const LIFETIME = 3600;
 
     /**
      * @return int
@@ -32,6 +24,6 @@ class TimeManager
      */
     public function hasExpired(int $time): bool
     {
-        return ($time + $this->lifetime) <= time();
+        return ($time + self::LIFETIME) <= time();
     }
 }

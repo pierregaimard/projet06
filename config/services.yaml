@@ -9,7 +9,6 @@ parameters:
     app.public_account_img_dir: '/account_images/'
     app.server_trick_img_dir: '%kernel.project_dir%/public/tricks_images/'
     app.public_trick_img_dir: '/tricks_images/'
-    app.trick_comment_load_limit: 5
 
 services:
     # default configuration for services in *this* file
@@ -89,22 +88,12 @@ services:
         arguments:
             $secret: '%env(APP_SECRET)%'
 
-    # TimeManager service
-    App\Service\Security\EmailValidation\TimeManager:
-        arguments:
-            $lifetime: '%env(EMAIL_VALIDATION_LIFETIME)%'
-
     # Trick images manager service
     App\Service\Trick\Image\TrickImageManager:
         arguments:
             $imgServerDir: '%app.server_trick_img_dir%'
             $width: 1180
             $resolution: 100
-
-    # Trick comments controller
-    App\Controller\Trick\TrickCommentController:
-        arguments:
-            $commentsLimit: '%app.trick_comment_load_limit%'
 
     # Account image manager
     App\Service\Account\AccountImageManager:

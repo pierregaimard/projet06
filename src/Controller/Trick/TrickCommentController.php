@@ -15,15 +15,7 @@ class TrickCommentController extends AbstractController
     /**
      * @var int
      */
-    private int $commentsLimit;
-
-    /**
-     * @param $commentsLimit
-     */
-    public function __construct($commentsLimit)
-    {
-        $this->commentsLimit = (int)$commentsLimit;
-    }
+    public const COMMENTS_LIMIT = 5;
 
     /**
      * @Route("/tricks/view/comments/get/{idTrick}", name="trick_view_comments")
@@ -45,7 +37,7 @@ class TrickCommentController extends AbstractController
         $comments = $commentsRepository->findBy(
             ['trick' => $trick],
             ['creationTime' => 'DESC'],
-            $this->commentsLimit,
+            self::COMMENTS_LIMIT,
             $offset
         );
 
@@ -109,6 +101,6 @@ class TrickCommentController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentsRepository = $manager->getRepository(Comment::class);
 
-        return $offset + $this->commentsLimit < $commentsRepository->count(['trick' => $trick]);
+        return $offset + self::COMMENTS_LIMIT < $commentsRepository->count(['trick' => $trick]);
     }
 }
