@@ -1,9 +1,6 @@
 // scss
 import "./styles/app.scss";
 
-// Stimulus
-import "./bootstrap";
-
 import "@popperjs/core";
 
 // Bootstrap
