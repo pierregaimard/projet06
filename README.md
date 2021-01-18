@@ -16,9 +16,9 @@ On your local machine, create a project directory and run the command:
 ### Step 2: Configure application server parameters
 In the `.env` file, configure the 3 parameters for the database and mailer information:
 
-  - `DATABASE_URL` The database connection information.
-  - `APP_EMAIL` The email used by the application to send notifications to the members.
-  - `MAILER_DSN` The mail DSN configuration.
+-  `DATABASE_URL` The database connection information.
+-  `APP_EMAIL` The email used by the application to send notifications to the members.
+-  `MAILER_DSN` The mail DSN configuration.
 
 Note: Be sure that `APP_ENV` variable is set to `prod`.
 
@@ -51,7 +51,7 @@ Add database fixtures: `php bin/console doctrine:fixtures:load`
 Finaly, upload the project files to your web directory of your server excluding
 `assets`, `diagram` and `node_modules` directories.
 
-### Step 7: browse to your website !
+### Step 7: browse to your website
 Your website is now ready.
 Configure your web server if needed.
 _(See the [Documentation](https://symfony.com/doc/4.4/setup/web_server_configuration.html))_
