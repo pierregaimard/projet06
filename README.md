@@ -15,10 +15,9 @@ On your local machine, create a project directory and run the command:
 
 ### Step 2: Configure application server parameters
 In the `.env` file, configure the 3 parameters for the database and mailer information:
-
--  `DATABASE_URL` The database connection information.
--  `APP_EMAIL` The email used by the application to send notifications to the members.
--  `MAILER_DSN` The mail DSN configuration.
+- `DATABASE_URL` The database connection information.
+- `APP_EMAIL` The email used by the application to send notifications to the members.
+- `MAILER_DSN` The mail DSN configuration.
 
 Note: Be sure that `APP_ENV` variable is set to `prod`.
 
