@@ -1,0 +1,12 @@
+{
+    "lang": "en-US",
+    "name": "Snow Tricks",
+    "short_name": "SnowTricks",
+    "description": "Collaborative snowboard tricks application",
+    "start_url": "https://projet06.pgaimard.fr",
+    "scope": "https://projet06.pgaimard.fr/",
+    "orientation": "landscape",
+    "display": "browser",
+    "background_color": "#000",
+    "theme_color": "#0ff"
+}
