@@ -28,7 +28,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=16, unique=true)
-     * @Assert\NotBlank(groups={"signup", "forgot_password_step2", "account_info"})
+     * @Assert\NotBlank(groups={"signup", "forgot_password_step1", "forgot_password_step2", "account_info"})
      * @Assert\Length(min="3", max="16", groups={"signup", "account_info"})
      */
     private $username;
@@ -71,8 +71,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(groups={"signup", "forgot_password_step1", "account_info"})
-     * @Assert\Email(groups={"signup", "forgot_password_step1", "account_info"})
+     * @Assert\NotBlank(groups={"signup", "account_info"})
+     * @Assert\Email(groups={"signup", "account_info"})
      */
     private $email;
 
