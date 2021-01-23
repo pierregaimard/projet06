@@ -1,0 +1,62 @@
+<form id="app-form" method="post" class="needs-validation" novalidate>
+    {# Title #}
+    <p class="display-5 fw-lighter m-0">
+        SN<span class="snow">o</span>W<br/>
+        TRicKS
+    </p>
+    <h1 class="display-3 fw-bolder mb-5">Sign-in</h1>
+
+    {# Error messages section #}
+    {% if error %}
+        <div class="text-danger lead mb-5" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    {# Formfield: username #}
+    <div class="form-floating mb-3 text-body">
+        <input
+                type="text"
+                value="{{ last_username }}"
+                name="username"
+                id="inputUsername"
+                class="form-control"
+                placeholder="username"
+                required autofocus
+        >
+        <label for="inputUsername">Username</label>
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+
+    {# Formfield: password #}
+    <div class="form-floating mb-3 text-body">
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="password" required>
+        <label for="inputPassword">Password</label>
+        <div class="invalid-feedback">
+            This field is required.
+        </div>
+    </div>
+
+    {# Formfield: token #}
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {# Submit & forgot password #}
+    <div class="d-flex flex-row justify-content-between align-items-center mt-5">
+        <button type="submit"  class="btn btn-outline-info px-4" formnovalidate>Sign-in</button>
+        <a href="{{ path('forgot_password_step1') }}" class="link-info text-center">Forgot your password ?</a>
+    </div>
+
+    {# Register for small devices #}
+    <a href="{{ path('sign-up') }}" class="d-block d-md-none btn btn-outline-info w-100 mt-4">Register</a>
+
+    {# Exit button for large devices #}
+    <div id="app-signup-exit" class="mt-5 d-none d-lg-block">
+        <a href="{{ path('home') }}" class="link-info">
+            <img src="{{ asset('build/images/app-icon-exit.00227cca.svg') }}" alt="exit" width="100">
+        </a>
+    </div>
+</form>

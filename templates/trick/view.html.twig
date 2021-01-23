@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('trick_view') }}
+{% endblock %}
+
+{% block body %}
+
+    {# Large container #}
+    <div id="trick-view" class="container text-light">
+
+        {# Heading section #}
+        {% include "trick/_view_section_heading.html.twig" %}
+
+        {# Medias section #}
+        <section id="app-section-media" class="mt-5">
+            <h2 class="mb-4 text-center fw-lighter display-4">
+                mEd<span class="snow">iA</span>S
+            </h2>
+            <div class="row m-1 m-lg-4 g-5 row-cols-1 row-cols-md-2 row-cols-lg-3 px-md-4 px-lg-5">
+                {% include 'trick/_view_images.html.twig' %}
+                {% include 'trick/_view_videos.html.twig' %}
+            </div>
+        </section>
+        <div class="d-block d-sm-none text-center mt-5">
+            <button id="app-section-media-button" class="btn btn-outline-info w-75" type="button">
+                See meDiAS
+            </button>
+        </div>
+
+    </div>
+
+    {# Slim cintainer #}
+    <div id="trick-view-info" class="container mt-5 mb-5">
+
+        {# Description section #}
+        {% include "trick/_view_section_description.html.twig" %}
+
+        {# Comments section #}
+        {% include "trick/_view_section_comment.html.twig" %}
+
+    </div>
+
+    {# Modals #}
+    {% include 'trick/_view_image_modal.html.twig' %}
+    {% include 'home/_trick_delete_modal.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('trick_view') }}
+{% endblock %}

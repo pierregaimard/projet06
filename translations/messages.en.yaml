@@ -1,0 +1,4 @@
+app.signup.account_not_found: Your account has not been found, please try again
+app.signup.invalid_password: Invalid password, please try again
+app.signup.invalid_token: Sorry but a problem occured, please uses "validate my account" functionality in your member space.
+app.change_password.invalid_token: Sorry but a problem occured, please try again.

@@ -1,0 +1,29 @@
+{# State variable: default('') #}
+{% set state = '' %}
+{% if formElm.vars.submitted == true %}
+    {% if formElm.vars.valid == true and formElm.vars.value != null %}
+        {% set state = 'is-valid' %}
+    {% elseif formElm.vars.valid == false %}
+        {% set state = 'is-invalid' %}
+    {% endif %}
+{% endif %}
+
+{# Form field container #}
+<div class="mb-3 d-flex flex-row justify-content-between align-items-center w-100 elm-collection">
+
+    {# Input #}
+    <div class="text-body w-75">
+        {{ form_widget(
+            formElm,
+            {
+                attr: {
+                'class': 'form-control ' ~ state ,
+                'aria-describedby': formElm.vars.id ~ 'validation'
+            }
+            }
+        ) }}
+    </div>
+
+    {# Remove button #}
+    <button class="btn btn-sm btn-outline-info">Remove</button>
+</div>

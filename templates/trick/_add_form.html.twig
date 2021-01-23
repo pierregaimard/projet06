@@ -1,0 +1,53 @@
+<form
+    id="app-form"
+    name="trick"
+    method="post"
+    class="needs-validation"
+    novalidate="novalidate"
+    enctype="multipart/form-data"
+>
+    {# Trick name with fetch call for name duplication check #}
+    <span id="trick_name_check_route" data-route="{{ path('trick_add_name_check') }}"></span>
+    {% include 'form/_input.html.twig' with {'formElm': form.name} %}
+
+    {# Other form rows #}
+    {% include 'form/_input.html.twig' with {'formElm': form.description} %}
+    {% include 'form/_input_front.html.twig' with {'formElm': form.category} %}
+
+    {# Images section #}
+    <div class="d-flex flex-row justify-content-between align-items-center mt-5 mb-0">
+        <h2 class="fw-lighter mb-3">Images</h2>
+        <div id="add-trick-image" class="fw-lighter">
+            <img src="{{ asset('build/images/app-icon-plus.svg') }}" alt="Add an image" width="30" class="me-1">
+            Add an image
+        </div>
+    </div>
+    <div id="trick_images"></div>
+
+    {# Videos section #}
+    <div class="d-flex flex-row justify-content-between align-items-center mt-5 mb-0">
+        <h2 class="fw-lighter mb-3">Videos</h2>
+        <div id="add-trick-video" class="fw-lighter">
+            <img src="{{ asset('build/images/app-icon-plus.27e00f26.svg') }}" alt="Add a video" width="30" class="me-1">
+            Add a video embed tag
+        </div>
+    </div>
+    <div id="trick_videos" data-validation="{{ path('trick_add_tag_check') }}">
+        {% for video in form.videos %}
+            {% if loop.first == true %}
+                {% include 'form/_input.html.twig' with {'formElm': video.tag, 'label': false, 'width': 'w-75'} %}
+            {% else %}
+                {% include 'form/_input_collection.html.twig' with {'formElm': video.tag} %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {# token #}
+    {{ form_rest(form) }}
+
+    {# buttons #}
+    <div class="mt-5">
+        <button id="app-trick-submit" type="submit"  class="btn btn-outline-info px-4 me-1" formnovalidate>Save</button>
+        <a href="{{ path('home', {'_fragment': 'app-tricks-section'}) }}" class="btn btn-outline-secondary px-4">Return</a>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+{{ form_start(infoForm, {'method': 'POST', 'attr': {'novalidate': 'novalidate'}}) }}
+    {% include 'form/_input.html.twig' with {'formElm': infoForm.name} %}
+    {% include 'form/_input.html.twig' with {'formElm': infoForm.description} %}
+    {% include 'form/_input.html.twig' with {'formElm': infoForm.category} %}
+    <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-lg btn-outline-info w-100" formnovalidate>
+            Update information
+        </button>
+        <a
+            href="{{ path('trick_view', {'slug': trick.slug}) }}"
+            class="btn btn-outline-secondary mt-4"
+        >
+            Return
+        </a>
+    </div>
+    {{ form_rest(infoForm) }}
+{{ form_end(infoForm) }}

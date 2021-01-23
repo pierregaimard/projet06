@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+    {# Heading section #}
+    <section
+        id="app-heading-section"
+        class="container-fluid vh-100 overflow-hidden d-flex flex-column justify-content-between"
+    >
+        <div></div>
+        <div id="app-home-title" class="m-sm-3 m-md-4 m-xl-5">
+            <img src="{{ asset('build/images/snowtricks-heading-title.svg') }}" alt="SnowTricks Title">
+        </div>
+        <div id="app-home-button" class="m-sm-3 m-md-4 m-xl-5">
+            <a href="#app-tricks-section">
+                <img
+                    id="app-tricks-button"
+                    class="shadow"
+                    src="{{ asset('build/images/homepage-tricks-button.svg') }}"
+                    alt="SnowTricks button"
+                >
+            </a>
+        </div>
+    </section>
+
+    {# Tricks section #}
+    <section id="app-tricks-section" class="bg-dark pb-5 pt-2 pt-sm-5">
+        <div id="app-tricks-container" class="container pt-sm-5">
+            <div class="d-flex flex-column flex-sm-row justify-content-between py-3 mb-2 sticky-top bg-dark shadow-lg">
+                <div class="mb-2 mb-sm-0">
+                    <h2 class="text-white fw-lighter display-4">List of Tri<span class="snow">cK</span>S</h2>
+                </div>
+                <div class="d-flex flex-row justify-content-between justify-content-sm-end align-items-center">
+                    <div class="me-4">
+                        <form class="snow-form">
+                            <input type="search" class="form-control form-control-lg fw-light col-6 search" placeholder="seARcH">
+                        </form>
+                    </div>
+                    {% if app.user is not null and app.user.active %}
+                        <div>
+                            <a href="{{ path('trick_add') }}">
+                                <img
+                                    id="app-add-trick"
+                                    src="{{ asset('build/images/app-icon-plus.svg') }}"
+                                    alt="add a trick" width="60"
+                                >
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="app-tricks-cards" class="tricks-cards">
+                {% include 'home/_tricks.html.twig' %}
+            </div>
+            {% include 'home/_buttons.html.twig' %}
+        </div>
+        {% include 'home/_trick_delete_modal.html.twig' %}
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('home') }}
+{% endblock %}

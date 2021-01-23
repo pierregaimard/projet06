@@ -1,0 +1,14 @@
+{{ form_start(
+    form,
+    {'method': 'POST', 'attr':
+        {'id': 'app-form', 'class': 'needs-validation m-5 rotate', 'novalidate': 'novalidate'}
+    }
+)}}
+    {% include 'form/_input_front.html.twig' with {'formElm': form.content} %}
+    <div class="d-flex flex-row justify-content-between align-items-center">
+        <button type="submit"  class="btn btn-sm btn-outline-info w-100" formnovalidate>
+            Submit
+        </button>
+    </div>
+    {{ form_rest(form) }}
+{{ form_end(form) }}

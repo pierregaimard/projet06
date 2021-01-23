@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('validation') }}
+{% endblock %}
+
+{% block body %}
+    <section class="container-fluid bg-dark vh-100 d-flex flex-column justify-content-center">
+        <div id="form-one" class="container text-light">
+            <h1 class="mb-5 fw-lighter text-center">Account valliDatION</h1>
+            {% if message is null %}
+                <p class="fw-lighter lead mb-5 text-center text-info">
+                    Please enter your credentials to validate your account
+                </p>
+            {% else %}
+                <div class="text-danger lead mb-5 text-center" role="alert">
+                    {{ message|trans }}
+                </div>
+            {% endif %}
+            {% if invalidToken == false %}
+                {% include "security/signup/_account_validation_form.html.twig" %}
+            {% else %}
+                <div class="text-center">
+                    <a href="{{ path('home') }}" class="btn btn-outline-info px-4">hOme PaGE</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('validation') }}
+{% endblock %}

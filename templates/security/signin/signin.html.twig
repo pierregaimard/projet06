@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('signup') }}
+{% endblock %}
+
+{% block body %}
+    <section id="signup" class="container-fluid">
+        <div id="signup-block" class="row min-vh-100">
+            <div id="signup-illustration" class="col d-none d-lg-block">
+            </div>
+            <div
+                id="form-one"
+                class="col bg-dark text-light d-flex flex-row align-items-center justify-content-center"
+            >
+                {% include 'security/signin/_signin_form.html.twig' %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('signup') }}
+{% endblock %}

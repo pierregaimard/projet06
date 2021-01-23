@@ -1,0 +1,28 @@
+// Bootstrap variables
+$dark: #000;
+$input-placeholder-color: rgba(255, 255, 255, 0.6);
+$input-focus-border-color: #0ff;
+$input-focus-box-shadow: rgba(255, 255, 255, 0.2);
+$enable-shadows: true;
+$card-height: 100%;
+$link-decoration: none;
+
+// Global css
+.snow { color: #0ff; }
+.bg-snow { background-color: #0ff; }
+
+// snow color
+.snow-form input,
+.snow-form input:focus {
+  background-color: unset;
+  color: white;
+  outline: 0;
+}
+
+// Toasts
+.toast-container {
+  margin-top: 100px;
+  z-index: 1100;
+}
+
+.toast-body { text-align: left; }

@@ -1,0 +1,23 @@
+{{ form_start(form, {'method': 'POST', 'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+    <p class="display-5 fw-lighter m-0">
+        SN<span class="snow">o</span>W<br/>
+        TRicKS
+    </p>
+    <h1 class="display-3 fw-bolder mb-3">Sign-up</h1>
+    {% include 'form/_input.html.twig' with {'formElm': form.firstName} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.lastName} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.username} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.email} %}
+    {% include 'form/_input.html.twig' with {'formElm': form.plainPassword} %}
+    <div class="d-flex flex-row justify-content-between align-items-center mt-5">
+        <button type="submit"  class="btn btn-outline-info px-4" formnovalidate>Sign-up</button>
+        <a href="{{ path('app_login') }}" class="link-info text-center">Already have an account ?</a>
+    </div>
+    <div id="app-signup-exit" class="mt-5 d-none d-md-block">
+        <a href="{{ path('home') }}" class="link-info">
+            <img src="{{ asset('build/images/app-icon-exit.00227cca.svg') }}" alt="exit" width="100">
+        </a>
+    </div>
+    {{ form_rest(form) }}
+    <div style="height: 80px" class="d-block d-md-none"></div>
+{{ form_end(form) }}

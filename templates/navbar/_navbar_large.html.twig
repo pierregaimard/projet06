@@ -1,0 +1,34 @@
+<nav id="app-navbar-large" class="navbar fixed-top navbar-expand navbar-dark bg-dark d-none d-sm-block">
+    <div class="container-fluid my-2">
+        {# brand #}
+        <a class="navbar-brand mx-2" href="{{ path('home') }}">
+            <img src="{{ asset('build/images/title.svg') }}" alt="SnowTricks brand" width="140">
+        </a>
+        {# menu #}
+        <ul class="navbar-nav mx-2">
+            <li class="nav-item">
+                <a class="nav-link active fw-light" aria-current="page" href="{{ path('home') }}">hOme</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-light" href="{{ path('home', {'_fragment': 'app-tricks-section'}) }}">TrIcKS</a>
+            </li>
+            {% if app.user %}
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="{{ path('account') }}">
+                        aCCouNT
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="{{ path('app_logout') }}">LOgoUT</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="{{ path('app_login') }}">sIGN-iN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-light" href="{{ path('sign-up') }}">sIgn-uP</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

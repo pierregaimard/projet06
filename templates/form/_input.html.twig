@@ -1,0 +1,46 @@
+{# State variable: Default('') #}
+{% set state = '' %}
+{% if formElm.vars.submitted == true %}
+    {% if formElm.vars.valid == true and formElm.vars.value != null %}
+        {% set state = 'is-valid' %}
+    {% elseif formElm.vars.valid == false %}
+        {% set state = 'is-invalid' %}
+    {% endif %}
+{% endif %}
+
+{# label: default(true) #}
+{% if label is not defined %}
+    {% set label = true %}
+{% endif %}
+
+{# input field width: default(w-100) #}
+{% if width is not defined %}
+    {% set width = 'w-100' %}
+{% endif %}
+
+{# Form field container #}
+<div class="{% if label == true %}form-floating{% endif %} mb-3 text-body">
+
+    {# Input #}
+    {{ form_widget(
+        formElm,
+        {
+            attr: {
+                'class': 'form-control ' ~ state ~ ' ' ~ width,
+                'aria-describedby': formElm.vars.id ~ 'validation'
+            }
+        }
+    ) }}
+
+    {# Label #}
+    {% if label == true %}
+        {{ form_label(formElm) }}
+    {% endif %}
+
+    {# Errors container #}
+    {% if formElm.vars.errors is not null  %}
+        <div id="{{ formElm.vars.id ~ 'validation' }}" class="invalid-feedback">
+            {{ formElm.vars.errors|replace({'ERROR: ':''}) }}
+        </div>
+    {% endif %}
+</div>
