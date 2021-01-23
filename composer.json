@@ -94,6 +94,7 @@
         "symfony": {
             "allow-contrib": false,
             "require": "4.4.*"
-        }
+        },
+        "symfony-web-dir": "public/"
     }
 }
