@@ -32,7 +32,7 @@ class TrickViewController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() and $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             # Set comment data
             $comment->setAuthor($this->getUser());
             $comment->setTrick($trick);
