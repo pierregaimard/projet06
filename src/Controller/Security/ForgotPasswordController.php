@@ -61,7 +61,7 @@ class ForgotPasswordController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $this->getDoctrine()->getManager();
-            $userTest = $manager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
+            $userTest = $manager->getRepository(User::class)->findOneBy(['username' => $user->getUsername()]);
             if (!$userTest instanceof User) {
                 $message = 'app.signup.account_not_found';
             }
